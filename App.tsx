@@ -1,76 +1,69 @@
 import React from 'react';
-import { StyleSheet,View, Dimensions , Text} from 'react-native';
+import { StyleSheet,View, Dimensions , Text, Button, Alert} from 'react-native';
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator, NativeStackScreenProps} from '@react-navigation/native-stack';
+import RiderMain from './src/screens/RiderMain';
+import { RootStackParamList } from './types';
+import { Header } from 'react-native/Libraries/NewAppScreen';
+import { Image } from 'expo-image';
 
 
-const {width, height} = Dimensions.get("window");
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.02;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const INITIAL_POSITION = 
-    {
-      latitude: 33.513154,
-      longitude: -112.125235,
-      latitudeDelta: LATITUDE_DELTA,
-      longitudeDelta: LONGITUDE_DELTA,
-    };
 
 export default function App() {
  
-
-    
-    let state = {
-      tableHead: ['Head', 'Head2', 'Head3', 'Head4'],
-      tableData: [
-        ['1', '2', '3', '4'],
-        ['a', 'b', 'c', 'd'],
-        ['1', '2', '3', '456\n789'],
-        ['a', 'b', 'c', 'd']
-      ]
-    }
- 
+   
   return (
-    <View style={styles.container}>
-      <MapView style={styles.map}
-       /*provider={PROVIDER_GOOGLE}*/
-        initialRegion={INITIAL_POSITION}/>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Login" component={Login} options={{title: 'Login'}} />
+        <Stack.Screen  name="RiderMain" component={RiderMain} options={{title: 'RiderMain'}} />
+      </Stack.Navigator>
+    </NavigationContainer>
 
-        <View style={styles.table}>
-        <Text>Hello</Text>
-        <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-          <Row data={state.tableHead} style={styles.head} textStyle={styles.text}/>
-          <Rows data={state.tableData} textStyle={styles.text}/>
-        </Table>
-        </View>
-    </View>
-    
+     
   );
 }
 
+type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
+ 
+const Login: React.FC<LoginProps> = (props) =>{
+  return( <View style={styles.container}>
+    <Text style={styles.header}>Login Screen</Text>
+    <Image
+    style={styles.image}
+    source= '/assets/Control-V-removebg-preview.png'
+    contentFit="cover"
+    placeholder="Logo"
+    
+
+    ></Image>
+    <Button title='Go to RiderMain' onPress={() => props.navigation.push("RiderMain")} />
+  </View>
+);};
 
 const styles = StyleSheet.create({
-  container: {
+  container:{
+    backgroundColor: "grey",
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: '90%',
-    height: '60%',
-   
-  },
-  table:{
-     
-    width: "90%", 
-    backgroundColor: "grey"
-  },
-  head: {
+  }, 
+  header:{
+    fontSize: 30,
+    marginTop: 50,
+    textAlign: 'center'
+       
 
   },
-  text:{
-
+  image:{
+    width: 80,
+    height: 10
+    },
+  button:{
+    marginTop: 30,
+    backgroundColor: '#68a0cf',
+    borderRadius: 15
   }
 });
