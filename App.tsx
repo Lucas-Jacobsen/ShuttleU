@@ -8,6 +8,7 @@ import RiderMain from './src/screens/RiderMain';
 import { RootStackParamList } from './types';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { Image } from 'expo-image';
+import DriverMain from './src/screens/DriverMain';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -20,7 +21,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={Login} options={{title: 'Login'}} />
-        <Stack.Screen  name="RiderMain" component={RiderMain} options={{title: 'RiderMain'}} />
+        <Stack.Screen name="RiderMain" component={RiderMain} options={{title: 'RiderMain'}} />
+        <Stack.Screen name="DriverMain" component={DriverMain} options={{title: 'DriverMain'}} />
       </Stack.Navigator>
     </NavigationContainer>
 
@@ -38,10 +40,12 @@ const Login: React.FC<LoginProps> = (props) =>{
     source= '/assets/Control-V-removebg-preview.png'
     contentFit="cover"
     placeholder="Logo"
-    
-
     ></Image>
+
+
     <Button title='Go to RiderMain' onPress={() => props.navigation.push("RiderMain")} />
+
+    <Button title='Go To DriverMain' onPress={() => props.navigation.push("DriverMain")} />
   </View>
 );};
 

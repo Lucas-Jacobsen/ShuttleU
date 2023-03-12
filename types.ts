@@ -1,4 +1,5 @@
 export type RootStackParamList = {
     Login: undefined;
-    RiderMain: undefined
+    RiderMain: undefined;
+    DriverMain: undefined
 }
