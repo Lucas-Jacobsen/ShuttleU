@@ -1,23 +1,30 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Text,
-  Button,
-  Alert,
-} from "react-native";
-import {
-  Table,
-  TableWrapper,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  Cell,
-} from "react-native-table-component";
+import { StyleSheet, View, Dimensions, Text, Button, Alert,} from "react-native";
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell,} from "react-native-table-component";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
-const DriverMain = () => {
+import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types";
+import { NavigationContainer } from "@react-navigation/native";
+import ViewReservations from "./ViewReservations";
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+export default function DriverMainPage(){
+  
+  return (
+    <NavigationContainer independent={true}>
+      <Stack.Navigator >
+        <Stack.Screen name="DriverMain" component={DriverMain} options={{title: 'DriverMain'}} />
+        <Stack.Screen name="ViewReservations" component={ViewReservations} options={{title: 'ViewReservations'}} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+
+}
+
+type DriverMainProps = NativeStackScreenProps<RootStackParamList, "DriverMain">;
+
+const DriverMain: React.FC<DriverMainProps> = (props) => {
     return (
         <View style={styles.container}>
           <View>
@@ -26,10 +33,7 @@ const DriverMain = () => {
     
           
           <View style={styles.button}>
-            <Button
-              title="RESERVE A RIDE"
-              color="black"
-              onPress={() => Alert.alert("Button with adjusted color pressed")}
+            <Button title="VIEW RESERVATIONS" onPress={() => props.navigation.push("ViewReservations")}
             />
           </View>
         </View>
@@ -40,6 +44,7 @@ const DriverMain = () => {
 const styles = StyleSheet.create({
     header: {
       fontSize: 30,
+      textAlign: 'center'
     },
     container: {
       flex: 1,
@@ -76,4 +81,3 @@ const styles = StyleSheet.create({
   
 
 
-export default DriverMain;
