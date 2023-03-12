@@ -1,39 +1,43 @@
-import React from "react";
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Text,
-  Button,
-  Alert,
-} from "react-native";
-import {
-  Table,
-  TableWrapper,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  Cell,
-} from "react-native-table-component";
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, Alert, Button } from 'react-native';
+import { Table, TableWrapper, Row,Rows, Cell } from 'react-native-table-component';
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+
+
 const ViewReservations = () => {
+
+  let state = {
+      tableHead: ['Head', 'Head2', 'Head3', ''],
+      tableData: [
+        ['1', '2', '3', 'Start'],
+        ['a', 'b', 'c', 'Start'],
+        ['1', '2', '3', 'Start'],
+        ['a', 'b', 'c', 'Start']
+      ]
+    }
+
+ 
+
     return (
         <View style={styles.container}>
           <View>
             <Text style={styles.header}>ViewReservations</Text>
-         
-    
-          
-          <View style={styles.button}>
-            <Button title="RESERVE A RIDE" onPress={() => Alert.alert("Button with adjusted color pressed")}
-            />
-          </View>
+            </View>
+            <View style={styles.table}>
+        <Table borderStyle={{ borderWidth: 2, borderColor: "#000" }}>
+          <Row
+            data={state.tableHead}
+            style={styles.head}
+            textStyle={styles.text}
+          />
+          <Rows data={state.tableData} textStyle={styles.text} />
+        </Table>
+      </View>
         </View>
-        </View>
+        
       );
     };
-
+  
 const styles = StyleSheet.create({
     header: {
       fontSize: 30,
@@ -64,11 +68,9 @@ const styles = StyleSheet.create({
     row: {
       height: 28,
     },
-    button: {
-      marginTop: 30,
-      backgroundColor: "#68a0cf",
-      borderRadius: 15,
-    },
+    
+
+
   });
   
 
