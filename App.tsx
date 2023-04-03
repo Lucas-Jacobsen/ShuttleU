@@ -1,18 +1,20 @@
 import React from 'react';
-import { StyleSheet,View, Dimensions , Text, Button, Alert} from 'react-native';
+import { ImageBackground, StyleSheet,View, Dimensions , Text, Button, Alert, Pressable} from 'react-native';
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator, NativeStackScreenProps} from '@react-navigation/native-stack';
-import RiderMain from './src/screens/RiderMain';
 import { RootStackParamList } from './types';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { Image } from 'expo-image';
+import RiderMain from './src/screens/RiderMain';
 import DriverMain from './src/screens/DriverMain';
+import AdminMain from './src/screens/AdminMain'
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
+const { width, height } = Dimensions.get("window");
+const bImage = './assets/ShuttleU-BackgroundImage.jpg';
 
 export default function App() {
  
@@ -23,6 +25,8 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} options={{title: 'Login'}} />
         <Stack.Screen name="RiderMain" component={RiderMain} options={{title: 'RiderMain'}} />
         <Stack.Screen name="DriverMain" component={DriverMain} options={{title: 'DriverMain'}} />
+        <Stack.Screen name="AdminMain" component={AdminMain} options={{title: 'DriverMain'}} />
+
       </Stack.Navigator>
     </NavigationContainer>
 
@@ -31,28 +35,35 @@ export default function App() {
 }
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
- 
+
 const Login: React.FC<LoginProps> = (props) =>{
-  return( <View style={styles.container}>
-    <Text style={styles.header}>Login Screen</Text>
+  return(
+     <View style={styles.container}>
+      <ImageBackground source={require(bImage)} resizeMode="cover" style={styles.bImage}>
     <Image
     style={styles.image}
-    source= '/assets/Control-V-removebg-preview.png'
-    contentFit="cover"
+    source={require('./src/assets/Control-V-removebg-preview.png')} 
+       contentFit="cover"
     placeholder="Logo"
     ></Image>
 
 
-    <Button title='Go to RiderMain' onPress={() => props.navigation.push("RiderMain")} />
+    <Pressable style={styles.button} onPress={() => props.navigation.push("RiderMain")}><Text style={styles.text}>Rider Main</Text></Pressable>
+    <Pressable style={styles.button} onPress={() => props.navigation.push("DriverMain")}><Text style={styles.text}>Driver Main </Text></Pressable>
+    <Pressable style={styles.button} onPress={() => props.navigation.push("AdminMain")}><Text style={styles.text}>Admin Main</Text></Pressable>
 
-    <Button title='Go To DriverMain' onPress={() => props.navigation.push("DriverMain")} />
+    
+
+    </ImageBackground>
   </View>
 );};
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor: "grey",
+    alignItems: 'center',
+    backgroundColor: "#f1f1f1",
     flex: 1,
+    
   }, 
   header:{
     fontSize: 30,
@@ -62,12 +73,36 @@ const styles = StyleSheet.create({
 
   },
   image:{
-    width: 80,
-    height: 10
+    width: 342,
+    height: 116 ,
+    resizeMode: 'cover',
+    marginTop: 100
+    
     },
   button:{
-    marginTop: 30,
-    backgroundColor: '#68a0cf',
-    borderRadius: 15
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 25,
+    borderColor: 'grey',
+    borderWidth: 2.5,
+    elevation: 3,
+    width: 300,
+    marginTop: 50,
+  
+  },
+  text: {
+    fontSize: 36,
+    lineHeight: 50,
+    fontWeight: '400',
+    letterSpacing: 0.25,
+    color: 'black',
+  },
+  bImage:{
+    height: height,
+    width: width,
+    alignItems:'center'
+  
   }
 });

@@ -6,6 +6,8 @@ import {
   Text,
   Button,
   Alert,
+  ImageBackground,
+  Pressable
 } from "react-native";
 import {
   Table,
@@ -16,7 +18,10 @@ import {
   Cols,
   Cell,
 } from "react-native-table-component";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+
+
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -43,6 +48,7 @@ const RiderMain = () => {
 
   return (
     <View style={styles.container}>
+      <ImageBackground source={require('../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
       <View>
         <Text style={styles.header}>Shuttle Map</Text>
       </View>
@@ -50,31 +56,35 @@ const RiderMain = () => {
         style={styles.map}
         /*provider={PROVIDER_GOOGLE}*/
         initialRegion={INITIAL_POSITION}
-      />
-
+        showsUserLocation={true}
+      >
+      <Marker coordinate = {{latitude: 33.513154,longitude: -112.125235}}
+         pinColor = {"purple"} // any color
+         title={"Shuttle 1"}
+         description={" Next Stop : Bldg-3"}/>
+      
+         
+         </MapView>
       <View style={styles.table}>
         <Table borderStyle={{ borderWidth: 2, borderColor: "#000" }}>
           <Row
             data={state.tableHead}
             style={styles.head}
-            textStyle={styles.text}
+            textStyle={styles.head}
           />
           <Rows data={state.tableData} textStyle={styles.text} />
         </Table>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="RESERVE A RIDE"
-          color="black"
-          onPress={() => Alert.alert("Button with adjusted color pressed")}
-        />
-      </View>
+      <Pressable style={styles.button} onPress={() => alert("HELLO WORLD")}><Text style={styles.text}>RESERVE A RIDE</Text></Pressable>
+     
+      </ImageBackground>
     </View>
   );
 };
 const styles = StyleSheet.create({
   header: {
     fontSize: 30,
+    marginTop: 50
   },
   container: {
     flex: 1,
@@ -90,23 +100,45 @@ const styles = StyleSheet.create({
   table: {
     marginTop: 20,
     width: "90%",
-    backgroundColor: "grey",
+    backgroundColor: "#F1f1f1",
   },
   head: {
     height: 40,
-    backgroundColor: "#f1f8ff",
+    backgroundColor: "#000",
+    color: 'white',
+    textAlign: "center",
+    fontWeight: '500',
+    paddingTop: 7,
+    borderColor: 'white',
+    borderWidth: .56,
+    
+    
   },
   text: {
     textAlign: "center",
+    fontWeight: '500'
   },
   row: {
     height: 28,
   },
   button: {
-    marginTop: 30,
-    backgroundColor: "#68a0cf",
-    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    borderColor: 'grey',
+    borderWidth: 2.5,
+    elevation: 3,
+    width: 300,
+    marginTop: 20,
   },
+  bImage:{
+    height: height,
+    width: width,
+    alignItems:'center'
+  
+  }
 });
 
 export default RiderMain;
