@@ -5,4 +5,5 @@ export type RootStackParamList = {
     RiderMain: undefined;
     DriverMain: undefined;
     ViewReservations: undefined;
+    RequestReservation: undefined;
 }

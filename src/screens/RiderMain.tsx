@@ -1,24 +1,13 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Text,
-  Button,
-  Alert,
-  ImageBackground,
-  Pressable
+import {StyleSheet,View, Dimensions, Text, Button, Alert, ImageBackground, Pressable
 } from "react-native";
-import {
-  Table,
-  TableWrapper,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  Cell,
-} from "react-native-table-component";
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell,} from "react-native-table-component";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types";
+import { NavigationContainer } from "@react-navigation/native";
+import RequestReservation from "./RequestReservation";
+import { Header } from "react-native/Libraries/NewAppScreen";
 
 
 
@@ -28,14 +17,29 @@ const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.02;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const INITIAL_POSITION = {
-  latitude: 33.513154,
-  longitude: -112.125235,
-  latitudeDelta: LATITUDE_DELTA,
-  longitudeDelta: LONGITUDE_DELTA,
-};
+const INITIAL_POSITION = { latitude: 33.513154,
+                           longitude: -112.125235,
+                           latitudeDelta: LATITUDE_DELTA,
+                           longitudeDelta: LONGITUDE_DELTA}
+                           ;
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const RiderMain = () => {
+
+export default function RiderMainPage(){
+  return(
+    <NavigationContainer independent={true}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="RiderMain" component={RiderMain} />
+        <Stack.Screen name="RequestReservation" component={RequestReservation}options={{title: 'Request a Ride'}} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+type RiderMainProps = NativeStackScreenProps<RootStackParamList, "RiderMain">;
+
+
+const RiderMain: React.FC<RiderMainProps> = (props) => {
   let state = {
     tableHead: ["Distance", "Next Stop", "Passengers"],
     tableData: [
@@ -75,7 +79,7 @@ const RiderMain = () => {
           <Rows data={state.tableData} textStyle={styles.text} />
         </Table>
       </View>
-      <Pressable style={styles.button} onPress={() => alert("HELLO WORLD")}><Text style={styles.text}>RESERVE A RIDE</Text></Pressable>
+      <Pressable style={styles.button} onPress={() => props.navigation.push("RequestReservation")}><Text style={styles.text}>RESERVE A RIDE</Text></Pressable>
      
       </ImageBackground>
     </View>
@@ -141,4 +145,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RiderMain;

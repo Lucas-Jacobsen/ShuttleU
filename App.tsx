@@ -14,7 +14,7 @@ import AdminMain from './src/screens/AdminMain'
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const { width, height } = Dimensions.get("window");
-const bImage = './assets/ShuttleU-BackgroundImage.jpg';
+const bImage = '../shuttleu/src/assets/vecteezy_minimal-background-purple-color-and-there-are-two-lines-on_12847530_386.jpg';
 
 export default function App() {
  
@@ -39,7 +39,7 @@ type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
 const Login: React.FC<LoginProps> = (props) =>{
   return(
      <View style={styles.container}>
-      <ImageBackground source={require(bImage)} resizeMode="cover" style={styles.bImage}>
+      <ImageBackground source={require(bImage)} resizeMode="stretch" style={styles.bImage}>
     <Image
     style={styles.image}
     source={require('./src/assets/Control-V-removebg-preview.png')} 
@@ -102,7 +102,9 @@ const styles = StyleSheet.create({
   bImage:{
     height: height,
     width: width,
-    alignItems:'center'
+    alignItems:'center',
+    
   
   }
+  
 });
