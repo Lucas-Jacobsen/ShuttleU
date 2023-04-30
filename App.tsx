@@ -7,9 +7,9 @@ import {createNativeStackNavigator, NativeStackScreenProps} from '@react-navigat
 import { RootStackParamList } from './types';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { Image } from 'expo-image';
-import RiderMain from './src/screens/RiderMain';
+import RiderMain from './src/screens/Rider/RiderMain';
 import DriverMain from './src/screens/DriverMain';
-import AdminMain from './src/screens/AdminMain'
+import AdminMain from './src/screens/Admin/AdminMain'
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

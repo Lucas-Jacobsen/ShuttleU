@@ -6,4 +6,7 @@ export type RootStackParamList = {
     DriverMain: undefined;
     ViewReservations: undefined;
     RequestReservation: undefined;
+    StartTrip: undefined;
+    ViewShuttleLogs: undefined;
+    AdminLogs:undefined
 }

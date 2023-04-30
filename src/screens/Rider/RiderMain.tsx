@@ -3,7 +3,7 @@ import {StyleSheet,View, Dimensions, Text, Button, Alert, ImageBackground, Press
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell,} from "react-native-table-component";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../types";
+import { RootStackParamList } from "../../../types";
 import { NavigationContainer } from "@react-navigation/native";
 import RequestReservation from "./RequestReservation";
 import { Header } from "react-native/Libraries/NewAppScreen";
@@ -61,11 +61,15 @@ const RiderMain: React.FC<RiderMainProps> = (props) => {
         initialRegion={INITIAL_POSITION}
         showsUserLocation={true}
       >
-      <Marker coordinate = {{latitude: 33.513154,longitude: -112.125235}}
+      <Marker coordinate = {{latitude: 33.513154,longitude: -112.125835}}
          pinColor = {"purple"} // any color
          title={"Shuttle 1"}
          description={" Next Stop : Bldg-3"}/>
       
+      <Marker coordinate={{latitude: 33.51316,longitude: -112.125244}}
+       pinColor = {"purple"} // any color
+       title={"Shuttle 2"}
+       description={" Next Stop : Bldg-6"}/>
          
          </MapView>
       <View style={styles.table}>

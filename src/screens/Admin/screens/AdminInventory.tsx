@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Alert, Button, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Alert, Button, ScrollView, ImageBackground, Dimensions } from 'react-native';
 import { Table, TableWrapper, Row,Rows, Cell } from 'react-native-table-component';
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+const { width, height } = Dimensions.get("window");
 
 
 const AdminInventory = () => {
@@ -34,25 +35,26 @@ const AdminInventory = () => {
     return (
         <ScrollView>
         <View style={styles.container}>
-          
+        <ImageBackground source={require('../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
+
+          <Text style={styles.header}>Inventory</Text>
             <View style={styles.table}>
                 
         <Table borderStyle={{ borderWidth: 2, borderColor: "#000" }}>
           <Row
             data={state.tableHead}
             style={styles.head}
-            textStyle={styles.text}
           />
           <Rows data={state.tableData} textStyle={styles.text} />
         </Table>
        
      
        
-      </View>
         </View>
         <View style={styles.button}>
         <Button title="Edit INVENTORY" color="black"onPress={() => alert("Edit inventory")}/>
-
+        </View>
+        </ImageBackground>
         </View>
         </ScrollView>
       );
@@ -61,6 +63,9 @@ const AdminInventory = () => {
 const styles = StyleSheet.create({
     header: {
       fontSize: 30,
+      marginTop: 50,
+      textAlign: 'center'
+      
     },
     container: {
       flex: 1,
@@ -73,6 +78,7 @@ const styles = StyleSheet.create({
       marginTop: 20,
       width: "90%",
       backgroundColor: "grey",
+      alignSelf:'center',
     },
     head: {
       height: 40,
@@ -87,7 +93,20 @@ const styles = StyleSheet.create({
       textAlignVertical: 'center'
     },
     button: {
-        marginBottom: 50
+alignSelf: 'center',
+      justifyContent: 'center',
+      paddingVertical: 12,
+      paddingHorizontal: 32,
+      borderRadius: 4,
+      borderColor: 'grey',
+      borderWidth: 2.5,
+      elevation: 3,
+      width: 300,
+      marginTop: 20,
+    },
+    bImage:{
+      width: width,
+      height: height + 300
     }
     
 

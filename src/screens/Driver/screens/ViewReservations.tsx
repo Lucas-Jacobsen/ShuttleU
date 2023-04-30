@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Alert, Button } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Alert, Button, ImageBackground, Dimensions } from 'react-native';
 import { Table, TableWrapper, Row,Rows, Cell } from 'react-native-table-component';
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
-
+const { width, height } = Dimensions.get("window");
 const ViewReservations = () => {
+
+
 
   let state = {
       tableHead: ['Head', 'Head2', 'Head3', ''],
@@ -20,6 +22,8 @@ const ViewReservations = () => {
 
     return (
         <View style={styles.container}>
+                <ImageBackground source={require('../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
+
           <View>
             <Text style={styles.header}>ViewReservations</Text>
             </View>
@@ -33,6 +37,7 @@ const ViewReservations = () => {
           <Rows data={state.tableData} textStyle={styles.text} />
         </Table>
       </View>
+      </ImageBackground>
         </View>
         
       );
@@ -41,6 +46,7 @@ const ViewReservations = () => {
 const styles = StyleSheet.create({
     header: {
       fontSize: 30,
+      marginTop: 50
     },
     container: {
       flex: 1,
@@ -68,6 +74,12 @@ const styles = StyleSheet.create({
     row: {
       height: 28,
     },
+      bImage:{
+      height: height,
+      width: width,
+      alignItems:'center'
+    
+    }
     
 
 
