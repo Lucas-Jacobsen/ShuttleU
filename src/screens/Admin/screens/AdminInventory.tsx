@@ -35,7 +35,7 @@ const AdminInventory = () => {
     return (
         <ScrollView>
         <View style={styles.container}>
-        <ImageBackground source={require('../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
+        <ImageBackground source={require('../../../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
 
           <Text style={styles.header}>Inventory</Text>
             <View style={styles.table}>

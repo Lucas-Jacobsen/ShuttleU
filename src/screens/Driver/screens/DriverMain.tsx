@@ -3,7 +3,7 @@ import { StyleSheet, View, Dimensions, Text, Button, Alert, ImageBackground, Pre
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell,} from "react-native-table-component";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../types";
+import { RootStackParamList } from "../../../../types";
 import { Surface } from 'react-native-paper';
 import { NavigationContainer } from "@react-navigation/native";
 import ViewReservations from "./ViewReservations";
@@ -33,7 +33,7 @@ type DriverMainProps = NativeStackScreenProps<RootStackParamList, "DriverMain">;
 const DriverMain: React.FC<DriverMainProps> = (props) => {
     return (
         <View style={styles.container}>
-          <ImageBackground source={require('../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
+          <ImageBackground source={require('../../../../src/assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
 
           <View>
             <Text style={styles.header}>Driver Main</Text>

@@ -12,7 +12,7 @@ const RequestReservation =() => {
   const [selectedMinutes, setSelectedMinutes] = useState(0);
     return (
         <View>
-                  <ImageBackground source={require('../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
+                  <ImageBackground source={require('../../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
                   <Text style={styles.header}>Request a Ride</Text>
                     <Input placeholder='Pickup Location' />
                     <Input placeholder="Drop off Location"/>

@@ -34,7 +34,7 @@ type AdminMainProps = NativeStackScreenProps<RootStackParamList, "AdminMain">;
 const AdminMain: React.FC<AdminMainProps> = (props) => {
     return (
         <View style={styles.container}>
-           <ImageBackground source={require('../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
+           <ImageBackground source={require('../../../../src/assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
             <Text style={styles.header}>Admin Main</Text>
          
     

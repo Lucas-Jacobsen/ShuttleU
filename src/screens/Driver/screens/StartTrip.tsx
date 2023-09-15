@@ -27,7 +27,7 @@ const StartTrip = () => {
       };
     return (
         <View style={styles.container}>
-        <ImageBackground source={require('../assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
+        <ImageBackground source={require('../../../../src/assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
         <View>
           <Text style={styles.header}>Current Trip</Text>
         </View>

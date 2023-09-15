@@ -32,7 +32,7 @@ const ViewShuttleLogs = () => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={require("../assets/ShuttleU-BackgroundImage.jpg")} resizeMode="cover" style={styles.bImage} >
+      <ImageBackground source={require("../../../../src/assets/ShuttleU-BackgroundImage.jpg")} resizeMode="cover" style={styles.bImage} >
         <Text style={styles.header}>Shuttle x Logs </Text>
         <View style={styles.table}>
           <Table borderStyle={{ borderWidth: 2, borderColor: "#000" }}>
