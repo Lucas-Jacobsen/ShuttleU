@@ -1,90 +1,88 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Alert, Button, ImageBackground, Dimensions } from 'react-native';
-import { Table, TableWrapper, Row,Rows, Cell } from 'react-native-table-component';
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Button,
+  ImageBackground,
+  Dimensions,
+  Pressable,
+} from "react-native";
+import {
+  Table,
+  TableWrapper,
+  Row,
+  Rows,
+  Cell,
+} from "react-native-table-component";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import ViewReservationsTable from "../components/ViewReservationsTable";
+import { Trip } from "../../../models/Trip";
+import { getCurrentPosition } from "react-native-geolocation-service";
+import {
+  CurrentRenderContext,
+  NavigationContainer,
+  StackActions,
+  useNavigation,
+} from "@react-navigation/native";
+import { RootStackParamList } from "../../../../types";
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
+import CurrentTrip from "./CurrentTrip";
 
 const { width, height } = Dimensions.get("window");
-const ViewReservations = () => {
 
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
+export default function ViewReservationsPage() {
+  return (
+    <NavigationContainer independent={true}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="ViewReservations" component={ViewReservations} />
+      <Stack.Screen name="CurrentTrip" component={CurrentTrip} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
-  let state = {
-      tableHead: ['Head', 'Head2', 'Head3', ''],
-      tableData: [
-        ['1', '2', '3', 'Start'],
-        ['a', 'b', 'c', 'Start'],
-        ['1', '2', '3', 'Start'],
-        ['a', 'b', 'c', 'Start']
-      ]
-    }
+type ViewReservationProps = {navigation: any};
 
- 
+const ViewReservations: React.FC<ViewReservationProps> = ({ navigation }) => {
 
-    return (
-        <View style={styles.container}>
-                <ImageBackground source={require('../../../../src/assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
-
-          <View>
-            <Text style={styles.header}>ViewReservations</Text>
-            </View>
-            <View style={styles.table}>
-        <Table borderStyle={{ borderWidth: 2, borderColor: "#000" }}>
-          <Row
-            data={state.tableHead}
-            style={styles.head}
-            textStyle={styles.text}
-          />
-          <Rows data={state.tableData} textStyle={styles.text} />
-        </Table>
-      </View>
-      </ImageBackground>
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        source={require("../../../../src/assets/ShuttleU-BackgroundImage.jpg")}
+        resizeMode="cover"
+        style={styles.bImage}
+      >
+        <View>
+          <Text style={styles.header}>ViewReservations</Text>
+          <ViewReservationsTable navigation={navigation}/>
         </View>
-        
-      );
-    };
-  
+      </ImageBackground>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
-    header: {
-      fontSize: 30,
-      marginTop: 50
-    },
-    container: {
-      flex: 1,
-      backgroundColor: "#fff",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    map: {
-      width: "90%",
-      height: "60%",
-      borderWidth: 2,
-    },
-    table: {
-      marginTop: 20,
-      width: "90%",
-      backgroundColor: "grey",
-    },
-    head: {
-      height: 40,
-      backgroundColor: "#f1f8ff",
-    },
-    text: {
-      textAlign: "center",
-    },
-    row: {
-      height: 28,
-    },
-      bImage:{
-      height: height,
-      width: width,
-      alignItems:'center'
-    
-    }
-    
-
-
-  });
-  
-
-
-export default ViewReservations;
+  header: {
+    fontSize: 30,
+    marginTop: 50,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bImage: {
+    height: height,
+    width: width,
+    alignItems: "center",
+  },
+});
