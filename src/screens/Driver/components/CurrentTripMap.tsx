@@ -3,13 +3,13 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { Trip } from '../../../models/Trip'; // Import the Trip type
-
+import { API_KEY } from '../../../config';
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.02;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const apikey = 'AIzaSyBInqlvsV-4LDfunvnsiDnQYa93sPsiRo0';
+const apikey = API_KEY;
 
 interface MapScreenProps {
     trip: Trip; // Define the Trip prop
