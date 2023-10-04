@@ -10,8 +10,9 @@ import ViewReservations from "./ViewReservations";
 import StartTrip from "./StartTrip";
 import ViewShuttleLogs from "./ViewShuttleLogs";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
 const { width, height } = Dimensions.get("window");
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function DriverMainPage(){
   

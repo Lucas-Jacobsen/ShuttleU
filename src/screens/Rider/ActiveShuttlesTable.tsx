@@ -3,19 +3,26 @@ import { View, Text, ActivityIndicator, FlatList, StyleSheet, ScrollView } from 
 import { Shuttle } from '../../models/Shuttle'; // Import the Shuttle model
 
 const ActiveShuttlesTable =  () => {
-  const [shuttleData, setShuttleData] = useState<Shuttle[]>([]); // Provide type for shuttleData
-  const [loading, setLoading] = useState(true);
+  const [shuttleData, setShuttleData] = useState<Shuttle[]>([]); // Initialize it as an empty array of type 'Shuttle'
+  const [loading, setLoading] = useState(true);                  //Initialize loading as true
+  
+ //Load Shuttles
+ const loadShuttles = async () => {
+  const response = await fetch("137.152.185.100:3000/shuttle", {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json`'
+    }
+  });
 
+  let data = await response.json();
+  setShuttleData(data);
+};
+
+  //useEffect hook to perform side effects in a functional component
   useEffect(() => {
     setLoading(true);
-    fetch('137.152.185.76:3000/shuttle')
-      .then(response => response.json())
-      .then(json => setShuttleData(json))
-      .finally(() => setLoading(false))
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-      });
+    loadShuttles();
   }, []);
 
   if (loading) {
@@ -29,7 +36,6 @@ const ActiveShuttlesTable =  () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Active Shuttles</Text>
-      <ScrollView>
       <FlatList
         data={shuttleData}
         keyExtractor={(shuttle) => shuttle.id.toString()}
@@ -42,7 +48,6 @@ const ActiveShuttlesTable =  () => {
           </View>
         )}
       />
-      </ScrollView>
     </View>
   );
 };
