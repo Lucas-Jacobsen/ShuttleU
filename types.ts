@@ -8,5 +8,6 @@ export type RootStackParamList = {
     RequestReservation: undefined;
     StartTrip: undefined;
     ViewShuttleLogs: undefined;
-    AdminLogs:undefined
+    AdminLogs:undefined;
+    CurrentTrip: undefined;
 }
