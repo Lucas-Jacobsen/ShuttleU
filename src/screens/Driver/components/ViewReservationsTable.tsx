@@ -17,33 +17,19 @@ const ViewReservationsTable : React.FC<Props>  = ({ navigation })=> {
     const [loading, setLoading] = useState(true);                  //Initialize loading as true
     
     //----------------------------SAMPLE DATA------------------------------------
- const sampleTrips: Trip[] = [
-      {
-        id: 1,
-        shuttle: 'Shuttle A',
-        pickup: ' 1',
-        dropoff: ' 2',
-        pax: 3,
-        dur: 0,
-      },
-      {
-        id: 2,
-        shuttle: 'Shuttle B',
-        pickup: ' 3',
-        dropoff: ' 4',
-        pax: 2,
-        dur: 0,
-      },
-      {
-        id: 3,
-        shuttle: 'Shuttle C',
-        pickup: ' 5',
-        dropoff: ' 6',
-        pax: 4,
-        dur: 0,
-      },
-      // Add more sample trips as needed
-    ];
+      
+  const sampleTrips: Trip[] = [
+    new Trip(1, 1, 1, 84, 3, 100),
+    new Trip(2, 4, 55, 4, 1, 100),
+    new Trip(3, 3, 33, 16, 2, 100),
+    new Trip(4, 2, 22, 57, 4, 100),
+    new Trip(5, 5, 6, 12, 5, 100),
+
+    new Trip(6, 0, 2, 21, 3, 0),
+    new Trip(7, 0, 39, 6, 3, 0),
+    new Trip(8, 0, 41, 38, 3, 0),
+
+  ];
     //---------------------------------------------------------------------------
    
     const handleGoPress = (trip: Trip) => {
