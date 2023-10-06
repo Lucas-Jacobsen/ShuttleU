@@ -1,15 +1,15 @@
 export class Trip {
        id: number;
-       shuttle: string;
-       pickup: string;
-       dropoff: string;
+       Shuttleid: number;
+       pickup: number;
+       dropoff: number;
        pax: number;
        dur: number;
 
     
-    constructor(id: number, shuttle: string, pickup: string, dropoff: string, pax: number, dur: number) {
+    constructor(id: number, Shuttleid: number, pickup: number, dropoff: number, pax: number, dur: number) {
       this.id = id;
-      this.shuttle = shuttle;
+      this.Shuttleid = Shuttleid;
       this.pickup = pickup;
       this.dropoff = dropoff;
       this.pax = pax;
