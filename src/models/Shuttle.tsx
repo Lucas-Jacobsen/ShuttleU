@@ -5,6 +5,6 @@ export class Shuttle {
     public code: string,
     public status: number,
     public lat: number,
-    public long: number
+    public lon: number
   ) {}
 }

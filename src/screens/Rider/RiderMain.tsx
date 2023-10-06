@@ -84,6 +84,8 @@ const styles = StyleSheet.create({
     borderWidth: 2.5,
     elevation: 3,
     width: 300,
+    marginTop: 20,
+    marginBottom:30
     
   },
   bImage:{
