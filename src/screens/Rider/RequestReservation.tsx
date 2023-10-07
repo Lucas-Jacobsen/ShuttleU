@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Input } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -27,6 +29,8 @@ const RequestReservation: React.FC = () => {
   const [selectedPickupBuilding, setSelectedPickupBuilding] = useState('');
   const [selectedDropoffBuilding, setSelectedDropoffBuilding] = useState('');
   const [selectedPassengers, setSelectedPassengers] = useState(1); // Example initial value
+  const navigation = useNavigation();
+
 
   useEffect(() => {
     // Simulate fetching the list of buildings
@@ -49,7 +53,11 @@ const RequestReservation: React.FC = () => {
     console.log('Pickup Location:', selectedPickupBuilding);
     console.log('Drop-off Location:', selectedDropoffBuilding);
     console.log('Selected Passengers:', selectedPassengers);
+    navigation.goBack();
   };
+  const handleCancel = () => {
+    navigation.goBack();
+  }
 
   const handlePassengerInputChange = (text: string) => {
     // Check if the input is empty before attempting to parse it
@@ -117,8 +125,8 @@ const RequestReservation: React.FC = () => {
         <Pressable style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Submit</Text>
         </Pressable>
-        <Pressable style={styles.buttonCancel}>
-          <Text style={styles.buttonText}>Cancel</Text>
+        <Pressable style={styles.buttonCancel} onPress={handleCancel}>
+          <Text style={styles.buttonText} >Cancel</Text>
         </Pressable>
       </ImageBackground>
     </View>
