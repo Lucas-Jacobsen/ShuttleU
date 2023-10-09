@@ -101,7 +101,7 @@ const ViewReservationsTable : React.FC<Props>  = ({ navigation })=> {
         padding: 2,
         borderWidth: 1,
         borderColor: '#ccc',
-        fontSize: 8,
+        fontSize: 22,
       },
       loadingContainer: {
         flex: 1,

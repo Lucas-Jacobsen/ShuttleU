@@ -1,5 +1,5 @@
-import React from 'react';
-import { ImageBackground, StyleSheet,View, Dimensions , Text, Button, Alert, Pressable} from 'react-native';
+import React, { useState } from 'react';
+import { ImageBackground, StyleSheet,View, Dimensions , Text, Button, Alert, Pressable, TextInput} from 'react-native';
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {NavigationContainer} from '@react-navigation/native';
@@ -37,6 +37,18 @@ export default function App() {
 type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
 const Login: React.FC<LoginProps> = (props) =>{
+  const [shuttleCode, setShuttleCode] = useState<string>('');
+
+  const handleDriverMainClick = () => {
+    if (shuttleCode === '') {
+      // Show an alert if the shuttle code is empty
+      Alert.alert('Please enter a shuttle code');
+    } else {
+      // Navigate to DriverMain with the shuttleCode
+      props.navigation.push('DriverMain');
+    }
+  };
+
   return(
      <View style={styles.container}>
       <ImageBackground source={require(bImage)} resizeMode="stretch" style={styles.bImage}>
@@ -49,7 +61,14 @@ const Login: React.FC<LoginProps> = (props) =>{
 
 
     <Pressable style={styles.button} onPress={() => props.navigation.push("RiderMain")}><Text style={styles.text}>Rider Main</Text></Pressable>
+   
     <Pressable style={styles.button} onPress={() => props.navigation.push("DriverMain")}><Text style={styles.text}>Driver Main </Text></Pressable>
+    <TextInput
+        style={styles.input}
+        placeholder="Enter Shuttle Code"
+        onChangeText={(text) => setShuttleCode(text)}
+        value={shuttleCode}
+      />
     <Pressable style={styles.button} onPress={() => props.navigation.push("AdminMain")}><Text style={styles.text}>Admin Main</Text></Pressable>
 
     
@@ -105,6 +124,14 @@ const styles = StyleSheet.create({
     alignItems:'center',
     
   
+  },
+  input: {
+    height: 40,           // Adjust the height as needed
+    borderColor: 'gray', // Border color
+    borderWidth: 1,     // Border width
+    paddingHorizontal: 10, // Horizontal padding
+    marginTop: 10,  
   }
+  
   
 });

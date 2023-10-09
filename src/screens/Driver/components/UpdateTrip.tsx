@@ -36,7 +36,7 @@ const UpdateTrip: React.FC<UpdateTripProps> = ({ trip, onUpdateTrip }) => {
       <TextInput
         style={styles.input}
         placeholder="New Destination"
-        onChangeText={(text) => setModifiedTrip({ ...modifiedTrip, dropoff: text })}
+        onChangeText={(text) =>setModifiedTrip({ ...modifiedTrip, dropoff: parseFloat(text) || 0 })}
       />
       <View style={styles.passengerContainer}>
         <Text style={styles.passengerLabel}>Passengers: </Text>

@@ -1,190 +1,214 @@
-import React, { Component } from 'react';
-import {StyleSheet,View, Dimensions, Text, Button, Alert, ImageBackground, Pressable,TextInput } from "react-native";
-import MapView, { Marker } from 'react-native-maps';
-import { Table, Row, Rows } from 'react-native-table-component';
+import { Picker } from '@react-native-picker/picker';
+import React, { useState, useEffect } from 'react';
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  Text,
+  ImageBackground,
+  Pressable,
+  Keyboard,
+  TouchableOpacity,
+} from 'react-native';
+import { Input } from 'react-native-elements';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp, createNativeStackNavigator } from '@react-navigation/native-stack'; // Import navigation prop type
+import { RootStackParamList } from '../../../../types';
+import { Trip } from '../../../models/Trip';
+import { StackNavigationProp } from '@react-navigation/stack';
+import CurrentTrip from './CurrentTrip';
+
+const { width, height } = Dimensions.get('window');
 
 
 
-const { width, height } = Dimensions.get("window");
+// Sample building data
+const sampleBuildings = [
+  { name: 'Jerome Apartments', number: 54, lat: 42.123456, long: -71.987654 },
+  { name: 'Natural Sciences', number: 6, lat: 42.234567, long: -71.876543 },
+  { name: 'Baseball Stadium', number: 15, lat: 42.345678, long: -71.765432 },
+  { name: 'Humanities and Social Sciences', number: 16, lat: 42.456789, long: -71.654321 },
+  { name: 'Rivers Parking Garage', number: 75, lat: 42.567890, long: -71.543210 },
+];
 
-const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.02;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const INITIAL_POSITION = { latitude: 33.513154,
-                           longitude: -112.125235,
-                           latitudeDelta: LATITUDE_DELTA,
-                           longitudeDelta: LONGITUDE_DELTA}
-                           ;
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-
-const StartTrip = () => {
-    let state = {
-        tableHead: ["Duration", "Next Stop", "Passengers"],
-        tableData: [
-          ["3:44", "Bldg-87", "3"],
-        
-        ],
-      };
-    return (
-        <View style={styles.container}>
-        <ImageBackground source={require('../../../../src/assets/ShuttleU-BackgroundImage.jpg')} resizeMode="cover" style={styles.bImage}>
-        <View>
-          <Text style={styles.header}>Current Trip</Text>
-        </View>
-        <View style={styles.table}>
-         <Table borderStyle={{ borderWidth: 2, borderColor: "#000" }}>
-          <Row
-            data={state.tableHead}
-            style={styles.head}
-            textStyle={styles.head}
-          />
-          <Rows data={state.tableData} textStyle={styles.text} />
-        </Table>
-        </View>
-        <MapView
-          style={styles.map}
-          /*provider={PROVIDER_GOOGLE}*/
-          initialRegion={INITIAL_POSITION}
-          showsUserLocation={true}
-        >
-        <Marker coordinate = {{latitude: 33.513154,longitude: -112.125235}}
-           pinColor = {"purple"} // any color
-           title={"Shuttle 1"}
-           description={" Next Stop : Bldg-3"}/>
-        
-           
-           </MapView>
-
-        <View style={styles.UpdateButtons}>
-            <Text style={styles.UpdateText}>Passengers</Text>
-            <Pressable style={styles.IDbutton} onPress={() =>alert("Increment PAX")}><Text style={styles.text}>+</Text></Pressable>
-            <Text style={styles.UpdateText}>/</Text>
-            <Pressable style={styles.IDbutton} onPress={() =>alert("Decrement PAX")}><Text style={styles.text}>-</Text></Pressable>
-            <Text style={styles.UpdateText}>4</Text>
-        </View> 
-
-        <View style={styles.AddStop}>
-          <Text style={styles.AddStopText}>Add Stop</Text>
-          <TextInput placeholder='New Stop' style={styles.AddStopInput}/>
-          <Pressable style={styles.AddStopButton}><Text>Add Stop</Text></Pressable>
-        </View>
-        <Pressable style={styles.button}><Text style={styles.text}>Update Trip</Text></Pressable>
-           </ImageBackground>
-           </View>
-    )
+export default function StartTripPage() {
+  return (
+    <NavigationContainer independent={true}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="StartTrip" component={StartTrip} />
+      <Stack.Screen name="CurrentTrip" component={CurrentTrip} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-const styles = StyleSheet.create({
-    header: {
-      fontSize: 30,
-      marginTop: 50
-    },
-    container: {
-      flex: 1,
-      backgroundColor: "#fff",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    map: {
-      width: "90%",
-      height: "50%",
-      borderWidth: 2,
-    },
-    table: {
-      marginTop: 20,
-      width: "90%",
-      backgroundColor: "#F1f1f1",
-    },
-    head: {
-      height: 40,
-      backgroundColor: "#000",
-      color: 'white',
-      textAlign: "center",
-      fontWeight: '500',
-      paddingTop: 7,
-      borderColor: 'white',
-      borderWidth: .56,      
-    },
-    text: {
-      textAlign: "center",
-      fontWeight: '500'
-    },
 
-    row: {
-      height: 28,
-    },
-    button: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingVertical: 12,
-      paddingHorizontal: 32,
-      borderRadius: 4,
-      borderColor: 'grey',
-      borderWidth: 2.5,
-      elevation: 3,
-      width: 300,
-      marginTop: 20,
-      display:'flex'
-    },
-    IDbutton:{
-        paddingVertical: 12,
-        paddingHorizontal: 20,
-        borderRadius: 10,
-        borderColor: 'black',
-        borderWidth: 4,
-        width: 60,
-        height: 50,
-        left: '25%',
-      },
-    UpdateButtons:{
-      width: width, 
-      flexDirection: 'row',
-      height:75,
-      paddingTop: 10 
-     },
-    UpdateText:{
-      left: '25%',
-      padding: 10,
-      fontWeight: '500',
-      fontSize: 20
-    },
-    AddStop:{
-      width: width, 
-      flexDirection: 'row',
-      height:75,
-      paddingTop: 10 ,
-          
-    },
-    AddStopText:{
-      left: '25%',
-      padding: 10,
-      fontWeight: '500',
-      fontSize: 20
-    },
-    AddStopInput: {
-      width: '33%',
-      height: 40,
-      marginTop: 5,
-      marginLeft: 10,
-      marginRight: 10,
-      borderWidth: 2.5,
-      textAlign: 'center'
-    },
-    AddStopButton:{
-      paddingHorizontal: 8,
-      paddingVertical: 12.5,
-      borderRadius: 10,
-      borderColor: 'black',
-      borderWidth: 2.5,
-      width: 80,
-      height: 50,
-    },
-    bImage:{
-      height: height,
-      width: width,
-      alignItems:'center'
-    
+type ViewReservationProps = {navigation: any};
+
+const StartTrip: React.FC<ViewReservationProps> = ({ navigation }) => {
+  const [selectedPickupBuilding, setSelectedPickupBuilding] = useState(0);
+  const [selectedDropoffBuilding, setSelectedDropoffBuilding] = useState(0);
+  const [selectedPassengers, setSelectedPassengers] = useState(1); // Example initial value
+
+  useEffect(() => {
+    // Simulate fetching the list of buildings
+    // You can replace this with actual API fetching later
+    setBuildings(sampleBuildings);
+  }, []);
+
+  const [buildings, setBuildings] = useState(sampleBuildings);
+  const [isPassengerInputVisible, setIsPassengerInputVisible] = useState(true);
+
+  const handleSubmit = () => {
+    // Check if both pickup and drop-off locations have been selected
+    if (!selectedPickupBuilding || !selectedDropoffBuilding) {
+      // Show an error message or alert to indicate missing selections
+      alert('Please select both pickup and drop-off locations.');
+      return; // Do not proceed with submission
     }
-  });
+
+    // Create the trip object with the entered data
+    const trip = new Trip(Math.random() * (100) + 5, 1234, selectedPickupBuilding,selectedDropoffBuilding,selectedPassengers,0)
   
-  
-export default StartTrip;
+
+    // Navigate to the "CurrentTrip" screen and pass the trip data
+    navigation.navigate('CurrentTrip', { trip });
+  };
+
+  const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const handlePassengerInputChange = (text: string) => {
+    // Check if the input is empty before attempting to parse it
+    if (text === '') {
+      setSelectedPassengers(0); // Set to 0 or any other default value as needed
+    } else {
+      setSelectedPassengers(parseInt(text, 10));
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        source={require('../../../assets/ShuttleU-BackgroundImage.jpg')}
+        resizeMode="cover"
+        style={styles.bImage}
+      >
+        <Text style={styles.header}>Start a trip</Text>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Pickup Location</Text>
+          <Picker
+            selectedValue={selectedPickupBuilding}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedPickupBuilding(itemValue)
+            }
+          >
+            <Picker.Item label="Select Pickup Building" value="" />
+            {buildings.map((building) => (
+              <Picker.Item
+                key={building.number}
+                label={building.name}
+                value={building.number.toString()}
+              />
+            ))}
+          </Picker>
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Drop-off Location</Text>
+          <Picker
+            selectedValue={selectedDropoffBuilding}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedDropoffBuilding(itemValue)
+            }
+          >
+            <Picker.Item label="Select Drop-off Building" value="" />
+            {buildings.map((building) => (
+              <Picker.Item
+                key={building.number}
+                label={building.name}
+                value={building.number.toString()}
+              />
+            ))}
+          </Picker>
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Number of Passengers</Text>
+          <Input
+            placeholder="Enter Number of Passengers"
+            keyboardType="numeric"
+            value={selectedPassengers.toString()}
+            onChangeText={handlePassengerInputChange}
+            returnKeyType="done" // Set returnKeyType to "done" for the "Done" button
+          />
+        </View>
+        <Pressable style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </Pressable>
+        <Pressable style={styles.buttonCancel} onPress={handleCancel}>
+          <Text style={styles.buttonText}>Cancel</Text>
+        </Pressable>
+      </ImageBackground>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center', // Center vertically
+    alignItems: 'center', // Center horizontally
+  },
+  header: {
+    fontSize: 30,
+    marginTop: 50,
+    textAlign: 'center',
+  },
+  bImage: {
+    height: height,
+    width: width,
+  },
+  button: {
+    alignSelf: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 6,
+    borderColor: 'grey',
+    borderWidth: 5,
+  },
+  buttonCancel: {
+    alignSelf: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 6,
+    borderColor: 'red',
+    borderWidth: 5,
+  },
+  buttonText: {
+    color: '#000',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  inputContainer: {
+    marginVertical: 10,
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  confirmButton: {
+    alignSelf: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 6,
+    borderColor: 'grey',
+    borderWidth: 2,
+  },
+  confirmedText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
+

@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { Component } from "react";
 import {
   StyleSheet,
@@ -14,26 +15,23 @@ import { Row, Rows, Table } from "react-native-table-component";
 const { width, height } = Dimensions.get("window");
 
 const ViewShuttleLogs = () => {
+  const navigation = useNavigation();
+
+
   let state = {
     tableHead: ["ID", "Pickup", "Drop-off", "PAX", "DUR."],
     tableData: [
-      ["0", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["1", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["2", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["3", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["4", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["5", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["6", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["7", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["8", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["9", "Bldg-87", "Bldg-6", 4, 11.54],
+      ["0", "Bldg-8", "Bldg-6", 4, 503],
+      ["1", "Bldg-16", "Bldg-54", 4, 1198],
+      ["2", "Bldg-87", "Bldg-10", 4, 101],
+  
     ],
   };
 
   return (
     <View style={styles.container}>
       <ImageBackground source={require("../../../../src/assets/ShuttleU-BackgroundImage.jpg")} resizeMode="cover" style={styles.bImage} >
-        <Text style={styles.header}>Shuttle x Logs </Text>
+        <Text style={styles.header}>Shuttle SHO5 Logs </Text>
         <View style={styles.table}>
           <Table borderStyle={{ borderWidth: 2, borderColor: "#000" }}>
             <Row
@@ -45,8 +43,8 @@ const ViewShuttleLogs = () => {
           </Table>
         </View>
         
-        <Pressable style={styles.button} onPress={() =>alert("To Reserve a Ride")}><Text style={styles.text}>Edit Log</Text></Pressable>
-        <Pressable style={styles.button} onPress={() =>alert("To Return to Driver Main")}><Text style={styles.text}>Return Home</Text></Pressable>
+        <Pressable style={styles.button} onPress={() =>alert("Edit Log")}><Text style={styles.text}>Edit Log</Text></Pressable>
+        <Pressable style={styles.button} onPress={() =>navigation.goBack()}><Text style={styles.text}>Return Home</Text></Pressable>
         
 
       </ImageBackground>
