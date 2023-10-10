@@ -11,6 +11,7 @@ import { Trip } from "../../models/Trip";
 import * as Location from "expo-location";
 import { Shuttle } from "../../models/Shuttle";
 import ShuttleTripData from "../../models/ShuttleTripData";
+import { loadedShuttleTripData } from "../../dataLoader";
 import { API_KEY } from "../../config";
 import axios from "axios";
 
@@ -27,48 +28,7 @@ const ActiveShuttlesTable: React.FC = () => {
   const apiKey = API_KEY;
   const distancesArray: string[] = [];
 
-  const sampleData: ShuttleTripData[] = [
-    {
-      shuttleId: 1,
-      lat: 33.51083374,
-      lon: -112.131370544,
-      dropoff: 84,
-      pax: 3,
-      dur: 100,
-    },
-    {
-      shuttleId: 4,
-      lat: 33.512325,
-      lon: -112.131334,
-      dropoff: 4,
-      pax: 1,
-      dur: 100,
-    },
-    {
-      shuttleId: 3,
-      lat: 33.513193,
-      lon: -112.128283,
-      dropoff: 16,
-      pax: 2,
-      dur: 100,
-    },
-    {
-      shuttleId: 2,
-      lat: 33.512941,
-      lon: -112.122134,
-      dropoff: 57,
-      pax: 4,
-      dur: 100,
-    },
-    {
-      shuttleId: 5,
-      lat: 33.515485,
-      lon: -112.130893,
-      dropoff: 12,
-      pax: 5,
-      dur: 100,
-    },
-  ];
+ 
   //Load Current Location
   const getLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -90,20 +50,7 @@ const ActiveShuttlesTable: React.FC = () => {
 
   //Load Data
   const loadShuttleTripData = async () => {
-    /*const response = await fetch("137.152.185.100:3000/trip", {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json`'
-    }
-  });
-
-  let data = await response.json(); */
-    console.log(
-      "Filtered Data:",
-      sampleData.filter((data) => data.dur > 0)
-    );
-
-    setShuttleTripData(sampleData);
+    setShuttleTripData(loadedShuttleTripData.filter((data) => data.dur > 0));
   };
 
   //useEffect hook to perform side effects in a functional component
@@ -116,7 +63,7 @@ const ActiveShuttlesTable: React.FC = () => {
 
     // Make API requests for each destination
     Promise.all(
-      sampleData.map((destination) => {
+      loadedShuttleTripData.map((destination) => {
         const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin}&destinations=${destination.lat},${destination.lon}&key=${apiKey}`;
         return axios.get(url);
       })

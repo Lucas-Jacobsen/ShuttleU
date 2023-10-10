@@ -12,22 +12,16 @@ import {
 } from 'react-native';
 import { Input } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import { loadedBldgData, loadedTripData } from '../../dataLoader';
+import { Trip } from '../../models/Trip';
 
 
 const { width, height } = Dimensions.get('window');
 
-// Sample building data
-const sampleBuildings = [
-  { name: 'Jerome Apartments', number: 54, lat: 42.123456, long: -71.987654 },
-  { name: 'Natural Sciences', number: 6, lat: 42.234567, long: -71.876543 },
-  { name: 'Baseball Stadium', number: 15, lat: 42.345678, long: -71.765432 },
-  { name: 'Humanities and Social Sciences', number: 16, lat: 42.456789, long: -71.654321 },
-  { name: 'Rivers Parking Garage', number: 75, lat: 42.567890, long: -71.543210 },
-];
 
 const RequestReservation: React.FC = () => {
-  const [selectedPickupBuilding, setSelectedPickupBuilding] = useState('');
-  const [selectedDropoffBuilding, setSelectedDropoffBuilding] = useState('');
+  const [selectedPickupBuilding, setSelectedPickupBuilding] = useState(0);
+  const [selectedDropoffBuilding, setSelectedDropoffBuilding] = useState(0);
   const [selectedPassengers, setSelectedPassengers] = useState(1); // Example initial value
   const navigation = useNavigation();
 
@@ -35,10 +29,10 @@ const RequestReservation: React.FC = () => {
   useEffect(() => {
     // Simulate fetching the list of buildings
     // You can replace this with actual API fetching later
-    setBuildings(sampleBuildings);
+    setBuildings(loadedBldgData);
   }, []);
 
-  const [buildings, setBuildings] = useState(sampleBuildings);
+  const [buildings, setBuildings] = useState(loadedBldgData);
   const [isPassengerInputVisible, setIsPassengerInputVisible] = useState(true);
 
   const handleSubmit = () => {
@@ -48,11 +42,23 @@ const RequestReservation: React.FC = () => {
         alert('Please select both pickup and drop-off locations.');
         return; // Do not proceed with submission
       }
+
+       // Generate a unique ID for the new trip
+  const newTripId = loadedTripData.length + 1;
+
+  // Create a new trip object with the unique ID and duration set to 0
+  const newTrip = new Trip(newTripId, 0, selectedPickupBuilding, selectedDropoffBuilding, selectedPassengers, 0);
+
+  // Add the new trip to the array
+  loadedTripData.push(newTrip);
     // Handle form submission here
     console.log('Form submitted');
     console.log('Pickup Location:', selectedPickupBuilding);
     console.log('Drop-off Location:', selectedDropoffBuilding);
     console.log('Selected Passengers:', selectedPassengers);
+
+
+
     navigation.goBack();
   };
   const handleCancel = () => {
@@ -89,7 +95,7 @@ const RequestReservation: React.FC = () => {
               <Picker.Item
                 key={building.number}
                 label={building.name}
-                value={building.number.toString()}
+                value={building.number}
               />
             ))}
           </Picker>
@@ -107,7 +113,7 @@ const RequestReservation: React.FC = () => {
               <Picker.Item
                 key={building.number}
                 label={building.name}
-                value={building.number.toString()}
+                value={building.number}
               />
             ))}
           </Picker>

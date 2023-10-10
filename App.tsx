@@ -38,7 +38,6 @@ type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
 const Login: React.FC<LoginProps> = (props) =>{
   const [shuttleCode, setShuttleCode] = useState<string>('');
-
   const handleDriverMainClick = () => {
     if (shuttleCode === '') {
       // Show an alert if the shuttle code is empty

@@ -33,6 +33,7 @@ import {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import CurrentTrip from "./CurrentTrip";
+import DriverMain from "./DriverMain";
 
 const { width, height } = Dimensions.get("window");
 
@@ -44,6 +45,9 @@ export default function ViewReservationsPage() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="ViewReservations" component={ViewReservations} />
       <Stack.Screen name="CurrentTrip" component={CurrentTrip} />
+      <Stack.Screen name="DriverMain" component={DriverMain} />
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -52,6 +56,11 @@ export default function ViewReservationsPage() {
 type ViewReservationProps = {navigation: any};
 
 const ViewReservations: React.FC<ViewReservationProps> = ({ navigation }) => {
+  const handleCancel = () => {
+    navigation.navigate("DriverMain");
+
+  };
+
 
   return (
     <View style={styles.container}>
@@ -61,8 +70,11 @@ const ViewReservations: React.FC<ViewReservationProps> = ({ navigation }) => {
         style={styles.bImage}
       >
         <View>
-          <Text style={styles.header}>ViewReservations</Text>
+          <Text style={styles.header}>View Reservations</Text>
           <ViewReservationsTable navigation={navigation}/>
+          <Pressable style={styles.buttonCancel} onPress={handleCancel}>
+          <Text style={styles.buttonText}>Cancel</Text>
+        </Pressable>
         </View>
       </ImageBackground>
     </View>
@@ -73,12 +85,27 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 30,
     marginTop: 50,
+    textAlign:'center'
   },
   container: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    width: width, 
+    height: height
+  }, buttonCancel: {
+    alignSelf: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 6,
+    borderColor: "red",
+    borderWidth: 5,
+  },
+  buttonText: {
+    color: "#000",
+    fontSize: 18,
+    fontWeight: "bold",
   },
   bImage: {
     height: height,
