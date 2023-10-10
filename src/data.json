@@ -1,0 +1,599 @@
+{
+    "sampleList": [
+      {
+        "id": 1,
+        "type": "Type A",
+        "code": "SH01",
+        "active": 1,
+        "lat": 33.51083374,
+        "lon": -112.131370544
+      },
+      {
+        "id": 2,
+        "type": "Type B",
+        "code": "SH02",
+        "active": 0,
+        "lat": 33.512941,
+        "lon": -112.122134
+      },
+      {
+        "id": 3,
+        "type": "Type C",
+        "code": "SH03",
+        "active": 1,
+        "lat": 33.513193,
+        "lon": -112.128283
+      },
+      {
+        "id": 4,
+        "type": "Type A",
+        "code": "SH04",
+        "active": 1,
+        "lat": 33.512325,
+        "lon": -112.131334
+      },
+      {
+        "id": 5,
+        "type": "Type B",
+        "code": "SH05",
+        "active": 1,
+        "lat": 33.515485,
+        "lon": -112.130893
+      }
+    ],
+    "sampleData": [
+      {
+        "shuttleId": 1,
+        "lat": 33.51083374,
+        "lon": -112.131370544,
+        "dropoff": 84,
+        "pax": 3,
+        "dur": 100
+      },
+      {
+        "shuttleId": 4,
+        "lat": 33.512325,
+        "lon": -112.131334,
+        "dropoff": 4,
+        "pax": 1,
+        "dur": 100
+      },
+      {
+        "shuttleId": 3,
+        "lat": 33.513193,
+        "lon": -112.128283,
+        "dropoff": 16,
+        "pax": 2,
+        "dur": 100
+      },
+      {
+        "shuttleId": 2,
+        "lat": 33.512941,
+        "lon": -112.122134,
+        "dropoff": 57,
+        "pax": 4,
+        "dur": 100
+      },
+      {
+        "shuttleId": 5,
+        "lat": 33.515485,
+        "lon": -112.130893,
+        "dropoff": 12,
+        "pax": 5,
+        "dur": 100
+      }
+    ],
+    "sampleTrips": [
+      {
+        "id": 1,
+        "shuttleId": 1,
+        "userId": 1,
+        "dropoff": 84,
+        "pax": 3,
+        "dur": 100
+      },
+      {
+        "id": 2,
+        "shuttleId": 4,
+        "userId": 55,
+        "dropoff": 4,
+        "pax": 1,
+        "dur": 100
+      },
+      {
+        "id": 3,
+        "shuttleId": 3,
+        "userId": 33,
+        "dropoff": 16,
+        "pax": 2,
+        "dur": 100
+      },
+      {
+        "id": 4,
+        "shuttleId": 2,
+        "userId": 22,
+        "dropoff": 57,
+        "pax": 4,
+        "dur": 100
+      },
+      {
+        "id": 5,
+        "shuttleId": 5,
+        "userId": 6,
+        "dropoff": 12,
+        "pax": 5,
+        "dur": 100
+      },
+      {
+        "id": 6,
+        "shuttleId": 0,
+        "userId": 2,
+        "dropoff": 21,
+        "pax": 3,
+        "dur": 0
+      },
+      {
+        "id": 7,
+        "shuttleId": 0,
+        "userId": 39,
+        "dropoff": 6,
+        "pax": 3,
+        "dur": 0
+      },
+      {
+        "id": 8,
+        "shuttleId": 0,
+        "userId": 41,
+        "dropoff": 38,
+        "pax": 3,
+        "dur": 0
+      }
+    ],
+    "sampleBuildings": [
+      {
+        "name": "Engineering",
+        "number": 1,
+        "lat": 33.51083374,
+        "long": -112.131370544
+      },
+      {
+        "name": "Jerry Colangeelo Museum",
+        "number": 2,
+        "lat": 33.510269165,
+        "long": -112.129577637
+      },
+      {
+        "name": "Cathedral Rock",
+        "number": 3,
+        "lat": 33.510345459,
+        "long": -112.126739502
+      },
+      {
+        "name": "Echo",
+        "number": 4,
+        "lat": 33.51045,
+        "long": -112.126365
+      },
+      {
+        "name": "Catalina",
+        "number": 5,
+        "lat": 33.510372,
+        "long": -112.12611
+      },
+      {
+        "name": "Natural Sciences",
+        "number": 6,
+        "lat": 33.511244,
+        "long": -112.130567
+      },
+      {
+        "name": "33rd Avenue Parking Garage",
+        "number": 7,
+        "lat": 33.510124,
+        "long": -112.130848
+      },
+      {
+        "name": "Sunset",
+        "number": 8,
+        "lat": 33.509793,
+        "long": -112.126177
+      },
+      {
+        "name": "Soccer Stadium",
+        "number": 9,
+        "lat": 33.512035,
+        "long": -112.131798
+      },
+      {
+        "name": "Softball Stadium",
+        "number": 10,
+        "lat": 33.514135,
+        "long": -112.131749
+      },
+      {
+        "name": "ThunderGround",
+        "number": 11,
+        "lat": 33.51327,
+        "long": -112.130647
+      },
+      {
+        "name": "Lopes Performance Center",
+        "number": 12,
+        "lat": 33.513391,
+        "long": -112.131334
+      },
+      {
+        "name": "Baseball Stadium",
+        "number": 14,
+        "lat": 33.512325,
+        "long": -112.132876
+      },
+      {
+        "name": "Halo Parking Garage",
+        "number": 15,
+        "lat": 33.514174,
+        "long": -112.133595
+      },
+      {
+        "name": "Humanities and Social Sciences",
+        "number": 16,
+        "lat": 33.511573,
+        "long": -112.130332
+      },
+      {
+        "name": "North Rim Apartments",
+        "number": 17,
+        "lat": 33.513193,
+        "long": -112.128283
+      },
+      {
+        "name": "Student Advising Center",
+        "number": 18,
+        "lat": 33.512032,
+        "long": -112.130205
+      },
+      {
+        "name": "Theology",
+        "number": 19,
+        "lat": 33.511003,
+        "long": -112.1282
+      },
+      {
+        "name": "Ethington Memorial Theatre",
+        "number": 21,
+        "lat": 33.510339,
+        "long": -112.128132
+      },
+      {
+        "name": "Antelope Gymnasium / West Lecture Halls",
+        "number": 22,
+        "lat": 33.512546,
+        "long": -112.132336
+      },
+      {
+        "name": "Academic Administration",
+        "number": 23,
+        "lat": 33.510745,
+        "long": -112.129528
+      },
+      {
+        "name": "Lope Shop",
+        "number": 24,
+        "lat": 33.511328,
+        "long": -112.12947
+      },
+      {
+        "name": "Kaibab",
+        "number": 25,
+        "lat": 33.512975,
+        "long": -112.131106
+      },
+      {
+        "name": "Student Life Building",
+        "number": 26,
+        "lat": 33.512492,
+        "long": -112.130102
+      },
+      {
+        "name": "Encanto Apartments",
+        "number": 27,
+        "lat": 33.511691,
+        "long": -112.12673
+      },
+      {
+        "name": "RoadRunner Apartments",
+        "number": 28,
+        "lat": 33.511763,
+        "long": -112.128823
+      },
+      {
+        "name": "Student Union",
+        "number": 29,
+        "lat": 33.513237,
+        "long": -112.129961
+      },
+      {
+        "name": "Cypress Hall",
+        "number": 30,
+        "lat": 33.514148,
+        "long": -112.129849
+      },
+      {
+        "name": "Canyon Hall",
+        "number": 31,
+        "lat": 33.514183,
+        "long": -112.127917
+      },
+      {
+        "name": "Facilities Management",
+        "number": 32,
+        "lat": 33.513112,
+        "long": -112.129471
+      },
+      {
+        "name": "Education",
+        "number": 33,
+        "lat": 33.511027,
+        "long": -112.129334
+      },
+      {
+        "name": "Baseball Clubhouse",
+        "number": 34,
+        "lat": 33.511854,
+        "long": -112.132684
+      },
+      {
+        "name": "College of Arts and Media",
+        "number": 35,
+        "lat": 33.511567,
+        "long": -112.12729
+      },
+      {
+        "name": "Prescott Hall",
+        "number": 36,
+        "lat": 33.512602,
+        "long": -112.128772
+      },
+      {
+        "name": "Camelback Hall",
+        "number": 37,
+        "lat": 33.512613,
+        "long": -112.127779
+      },
+      {
+        "name": "Arena",
+        "number": 38,
+        "lat": 33.510522,
+        "long": -112.129001
+      },
+      {
+        "name": "Sedona Hall",
+        "number": 39,
+        "lat": 33.51388,
+        "long": -112.126711
+      },
+      {
+        "name": "Agave Apartments",
+        "number": 41,
+        "lat": 33.515308,
+        "long": -112.124732
+      },
+      {
+        "name": "Colangelo College of Business",
+        "number": 42,
+        "lat": 33.514006,
+        "long": -112.125121
+      },
+      {
+        "name": "31st Ave Parking Garage",
+        "number": 44,
+        "lat": 33.510561,
+        "long": -112.125066
+      },
+      {
+        "name": "Chaparral Hall",
+        "number": 45,
+        "lat": 33.514647,
+        "long": -112.126571
+      },
+      {
+        "name": "Saguaro Hall",
+        "number": 46,
+        "lat": 33.515397,
+        "long": -112.126765
+      },
+      {
+        "name": "Papago Apartments North",
+        "number": 47,
+        "lat": 33.51322,
+        "long": -112.126738
+      },
+      {
+        "name": "Papago Apartments South",
+        "number": 48,
+        "lat": 33.51249,
+        "long": -112.126792
+      },
+      {
+        "name": "Octillo Hall",
+        "number": 49,
+        "lat": 33.515947,
+        "long": -112.126763
+      },
+      {
+        "name": "Diamondback Apartments",
+        "number": 50,
+        "lat": 33.512883,
+        "long": -112.12311
+      },
+      {
+        "name": "Facilities Warehouse",
+        "number": 51,
+        "lat": 33.51341,
+        "long": -112.121575
+      },
+      {
+        "name": "Antelope Apartments",
+        "number": 52,
+        "lat": 33.512003,
+        "long": -112.123172
+      },
+      {
+        "name": "Cactus Apartments",
+        "number": 53,
+        "lat": 33.511499,
+        "long": -112.123492
+      },
+      {
+        "name": "Jerome Apartments",
+        "number": 54,
+        "lat": 33.510766,
+        "long": -112.123498
+      },
+      {
+        "name": "29th Ave Parking Garage",
+        "number": 55,
+        "lat": 33.510193,
+        "long": -112.123396
+      },
+      {
+        "name": "Sonora Apartments",
+        "number": 56,
+        "lat": 33.511288,
+        "long": -112.123162
+      },
+      {
+        "name": "Technology",
+        "number": 57,
+        "lat": 33.510029,
+        "long": -112.127385
+      },
+      {
+        "name": "Canyon Activity Center",
+        "number": 58,
+        "lat": 33.516067,
+        "long": -112.123013
+      },
+      {
+        "name": "29th Ave / Missouri Ave Parking Garage",
+        "number": 59,
+        "lat": 33.515212,
+        "long": -112.122077
+      },
+      {
+        "name": "Palo Verde Apartments",
+        "number": 60,
+        "lat": 33.510394,
+        "long": -112.122096
+      },
+      {
+        "name": "Turquoise Apartments",
+        "number": 61,
+        "lat": 33.512941,
+        "long": -112.122134
+      },
+      {
+        "name": "Oak Creek Apartments",
+        "number": 62,
+        "lat": 33.510535,
+        "long": -112.12096
+      },
+      {
+        "name": "Ponderosa Apartments",
+        "number": 63,
+        "lat": 33.510217,
+        "long": -112.121016
+      },
+      {
+        "name": "Canyon Ventures",
+        "number": 66,
+        "lat": 33.512161,
+        "long": -112.113681
+      },
+      {
+        "name": "Discover Dorm",
+        "number": 67,
+        "lat": 33.511267,
+        "long": -112.113756
+      },
+      {
+        "name": "27th Ave Parking Garage",
+        "number": 70,
+        "lat": 33.512497,
+        "long": -112.115849
+      },
+      {
+        "name": "Grand Canyon Education",
+        "number": 71,
+        "lat": 33.510403,
+        "long": -112.115718
+      },
+      {
+        "name": "Copper Apartments",
+        "number": 74,
+        "lat": 33.512901,
+        "long": -112.121061
+      },
+      {
+        "name": "Rivers Parking Garage",
+        "number": 75,
+        "lat": 33.516228,
+        "long": -112.119826
+      },
+      {
+        "name": "Agua Fria Apartments",
+        "number": 76,
+        "lat": 33.515203,
+        "long": -112.121047
+      },
+      {
+        "name": "Salt River Apartments",
+        "number": 77,
+        "lat": 33.515207,
+        "long": -112.119968
+      },
+      {
+        "name": "Verde River Apartments",
+        "number": 78,
+        "lat": 33.515231,
+        "long": -112.118912
+      },
+      {
+        "name": "Santa Cruz Apartments",
+        "number": 79,
+        "lat": 33.513892,
+        "long": -112.121031
+      },
+      {
+        "name": "Grove Parking Garage",
+        "number": 80,
+        "lat": 33.515712,
+        "long": -112.133335
+      },
+      {
+        "name": "Willow Hall",
+        "number": 81,
+        "lat": 33.515483,
+        "long": -112.131856
+      },
+      {
+        "name": "Acacia Hall",
+        "number": 82,
+        "lat": 33.516096,
+        "long": -112.131872
+      },
+      {
+        "name": "Ironwood Hall",
+        "number": 83,
+        "lat": 33.51608,
+        "long": -112.130893
+      },
+      {
+        "name": "Juniper Hall",
+        "number": 84,
+        "lat": 33.515485,
+        "long": -112.130893
+      }
+    ]
+}
+  
