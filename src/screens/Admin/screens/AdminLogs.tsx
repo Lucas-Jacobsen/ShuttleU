@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { Component } from "react";
 import {
   StyleSheet,
@@ -8,101 +9,87 @@ import {
   Alert,
   ImageBackground,
   Pressable,
+  FlatList,
 } from "react-native";
 import { Row, Rows, Table } from "react-native-table-component";
+import { loadedTripData } from "../../../dataLoader";
 
 const { width, height } = Dimensions.get("window");
 
-const AdminLogs = () => {
-  let state = {
-    tableHead: ["ID", "Pickup", "Drop-off", "PAX", "DUR."],
-    tableData: [
-      ["0", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["1", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["2", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["3", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["4", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["5", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["6", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["7", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["8", "Bldg-87", "Bldg-6", 4, 11.54],
-      ["9", "Bldg-87", "Bldg-6", 4, 11.54],
-    ],
-  };
+const ViewShuttleLogs = () => {
+  const navigation = useNavigation();
+
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={require("../../../assets/ShuttleU-BackgroundImage.jpg")} resizeMode="cover" style={styles.bImage} >
-        <Text style={styles.header}>Shuttle x Logs </Text>
-        <View style={styles.table}>
-          <Table borderStyle={{ borderWidth: 2, borderColor: "#000" }}>
-            <Row
-              data={state.tableHead}
-              style={styles.head}
-              textStyle={styles.head}
-            />
-            <Rows data={state.tableData} textStyle={styles.text} />
-          </Table>
-        </View>
-        
-        <Pressable style={styles.button} onPress={() =>alert("To Reserve a Ride")}><Text style={styles.text}>Edit Log</Text></Pressable>
-        <Pressable style={styles.button} onPress={() =>alert("To Return to Driver Main")}><Text style={styles.text}>Return Home</Text></Pressable>
-        
+    <Text style={styles.heading}> Trips</Text>
+    <View style={styles.row}>
+    <Text style={styles.headerCell}>id</Text>
+   <Text style={styles.headerCell}>Shuttle</Text>
+  <Text style={styles.headerCell}>Pickup</Text>
+  <Text style={styles.headerCell}>Dropoff</Text>
+  <Text style={styles.headerCell}>Passengers</Text>
+  <Text style={styles.headerCell}>Durration</Text>
+</View>
+    <FlatList
+      data={loadedTripData}
+      keyExtractor={(trip) => trip.id.toString()}
+      renderItem={({ item }) => (
+        <View style={styles.row}>
+          <Text style={styles.cell}> {item.id}</Text>
+          <Text style={styles.cell}> {item.Shuttleid}</Text>
+          <Text style={styles.cell}> {item.pickup}</Text>
+          <Text style={styles.cell}> {item.dropoff}</Text>
+          <Text style={styles.cell}> {item.pax}</Text>
+          <Text style={styles.cell}> {item.dur}</Text>
 
-      </ImageBackground>
-    </View>
-  );
+        </View>
+      )}
+    />
+  </View>
+);
 };
+
 const styles = StyleSheet.create({
-  container: {
-    height: height,
-    width: width,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  header: {
-    fontSize: 30,
-    marginTop: 50,
-    textAlign: "center",
-  },
-  bImage: {
-    height: height,
-    width: width,
-  },
-  button: {
-    alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 25,
-    borderColor: "grey",
-    borderWidth: 2.5,
-    elevation: 3,
-    width: 300,
-    marginTop: 50,
-    left: "10%"
-  },
-  table: {
-    marginTop: 20,
-    width: "90%",
-    backgroundColor: "#F1f1f1",
-    left: "5%"
-  },
-  head: {
-    height: 40,
-    backgroundColor: "#000",
-    color: "white",
-    textAlign: "center",
-    fontWeight: "500",
-    paddingTop: 7,
-    borderColor: "white",
-    borderWidth: 0.56,
-  },
-  text: {
-    textAlign: "center",
-    fontWeight: "500",
-  },
-  row: {
-    height: 28,
-  },
+container: {
+  flex: 1,
+  paddingHorizontal: 16,
+  paddingTop: 20,
+  borderWidth: 2
+  
+},
+heading: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  marginBottom: 16,
+},
+headerCell: {
+  fontSize:12
+},
+row: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginBottom: 8,
+},
+cell: {
+  flex: 1,
+  padding: 2,
+  borderWidth: 1,
+  borderColor: '#ccc',
+  fontSize: 22,
+},
+loadingContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+start:
+{
+  width: 40,
+  height: 50,
+  borderWidth: 2
+  
+}
 });
-export default AdminLogs;
+
+export default ViewShuttleLogs;
