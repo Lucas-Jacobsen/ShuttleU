@@ -20,7 +20,7 @@ import { RootStackParamList } from "../../../../types";
 import { Trip } from "../../../models/Trip";
 import { StackNavigationProp } from "@react-navigation/stack";
 import CurrentTrip from "./CurrentTrip";
-import { loadedBldgData, loadedTripData } from "../../../dataLoader";
+import { loadedBldgData, loadedTripData } from "../../../datasource/dataLoader";
 import DriverMain from "./DriverMain";
 
 const { width, height } = Dimensions.get("window");
@@ -62,7 +62,14 @@ const StartTrip: React.FC<ViewReservationProps> = ({ navigation }) => {
     }
 
     // Create the trip object with the entered data
-    const trip = new Trip(loadedTripData.length + 1,0,selectedPickupBuilding,selectedDropoffBuilding,selectedPassengers,0);
+    const trip = new Trip(
+      loadedTripData.length + 1,
+      0,
+      selectedPickupBuilding,
+      selectedDropoffBuilding,
+      selectedPassengers,
+      0
+    );
 
     console.log(selectedPickupBuilding);
     console.log(selectedDropoffBuilding);

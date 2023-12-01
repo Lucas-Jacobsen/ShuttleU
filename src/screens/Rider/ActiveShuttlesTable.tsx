@@ -11,7 +11,7 @@ import { Trip } from "../../models/Trip";
 import * as Location from "expo-location";
 import { Shuttle } from "../../models/Shuttle";
 import ShuttleTripData from "../../models/ShuttleTripData";
-import { loadedShuttleTripData } from "../../dataLoader";
+import { loadedShuttleTripData } from "../../datasource/dataLoader";
 import { API_KEY } from "../../config";
 import axios from "axios";
 
@@ -53,7 +53,7 @@ const ActiveShuttlesTable: React.FC = () => {
     setShuttleTripData(loadedShuttleTripData.filter((data) => data.dur > 0));
   };
 
-  //useEffect hook to perform side effects in a functional component
+  //hook to perform side effects in a functional component
   useEffect(() => {
     loadShuttleTripData();
     getLocation();
@@ -67,7 +67,7 @@ const ActiveShuttlesTable: React.FC = () => {
         const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin}&destinations=${destination.lat},${destination.lon}&key=${apiKey}`;
         return axios.get(url);
       })
-    )
+    ) 
       .then((responses) => {
         responses.forEach((response) => {
           setLoading(false); // Set isLoading to false when Promise responses are received
@@ -76,7 +76,7 @@ const ActiveShuttlesTable: React.FC = () => {
         });
         setDistances(distancesArray);
       })
-      .catch((error) => {
+      .catch((error) => {  
         console.error("Error fetching distances: ", error);
       });
   }, []);
@@ -102,11 +102,11 @@ const ActiveShuttlesTable: React.FC = () => {
             pax: "Passengers",
             dur: "Duration",
           },
-          ...shuttleTripData.filter((data) => data.dur > 0),
+          ...shuttleTripData.filter((data) => data.dur > 0)  ,
         ]}
         keyExtractor={(data) => data.shuttleId.toString()}
         renderItem={({ item, index }) => (
-          <View style={styles.row}>
+          <View style={styles.row}>  
             {index === 0 ? (
               <>
                 <Text style={styles.cellHead}>Shuttle Number</Text>
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     borderWidth: 2,
     marginTop: 10,
+    alignSelf: 'center'
   },
   heading: {
     fontSize: 24,

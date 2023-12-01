@@ -1,74 +1,60 @@
-import { Picker } from '@react-native-picker/picker';
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Text,
-  ImageBackground,
-  Pressable,
-  Keyboard,
-  TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Dimensions, Text, ImageBackground, Pressable } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { Input } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
-import { loadedBldgData, loadedTripData } from '../../dataLoader';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../types";
+import { loadedBldgData, loadedTripData } from '../../datasource/dataLoader';
 import { Trip } from '../../models/Trip';
-
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const { width, height } = Dimensions.get('window');
 
+export type StackParamList = {
+  ArrivalStatus: { newTripId: number };
+};
 
-const RequestReservation: React.FC = () => {
+type Props = {
+  navigation: StackNavigationProp<StackParamList>;
+};
+const RequestReservation: React.FC<Props> = ( {navigation}) => {
   const [selectedPickupBuilding, setSelectedPickupBuilding] = useState(0);
   const [selectedDropoffBuilding, setSelectedDropoffBuilding] = useState(0);
-  const [selectedPassengers, setSelectedPassengers] = useState(1); // Example initial value
-  const navigation = useNavigation();
-
+  const [selectedPassengers, setSelectedPassengers] = useState(1);
 
   useEffect(() => {
     // Simulate fetching the list of buildings
-    // You can replace this with actual API fetching later
     setBuildings(loadedBldgData);
   }, []);
 
   const [buildings, setBuildings] = useState(loadedBldgData);
-  const [isPassengerInputVisible, setIsPassengerInputVisible] = useState(true);
 
   const handleSubmit = () => {
-       // Check if both pickup and drop-off locations have been selected
-       if (!selectedPickupBuilding || !selectedDropoffBuilding) {
-        // Show an error message or alert to indicate missing selections
-        alert('Please select both pickup and drop-off locations.');
-        return; // Do not proceed with submission
-      }
+    if (!selectedPickupBuilding || !selectedDropoffBuilding) {
+      alert('Please select both pickup and drop-off locations.');
+      return;
+    }
 
-       // Generate a unique ID for the new trip
-  const newTripId = loadedTripData.length + 1;
+    const newTripId = loadedTripData.length + 1;
+    const newTrip = new Trip(newTripId, 0, selectedPickupBuilding, selectedDropoffBuilding, selectedPassengers, 0);
 
-  // Create a new trip object with the unique ID and duration set to 0
-  const newTrip = new Trip(newTripId, 0, selectedPickupBuilding, selectedDropoffBuilding, selectedPassengers, 0);
-
-  // Add the new trip to the array
-  loadedTripData.push(newTrip);
-    // Handle form submission here
+    loadedTripData.push(newTrip);
     console.log('Form submitted');
     console.log('Pickup Location:', selectedPickupBuilding);
     console.log('Drop-off Location:', selectedDropoffBuilding);
     console.log('Selected Passengers:', selectedPassengers);
 
-
-
-    navigation.goBack();
+    navigation.navigate('ArrivalStatus', { newTripId });
   };
+
   const handleCancel = () => {
     navigation.goBack();
-  }
+  };
 
   const handlePassengerInputChange = (text: string) => {
-    // Check if the input is empty before attempting to parse it
     if (text === '') {
-      setSelectedPassengers(0); // Set to 0 or any other default value as needed
+      setSelectedPassengers(0);
     } else {
       setSelectedPassengers(parseInt(text, 10));
     }
@@ -125,14 +111,14 @@ const RequestReservation: React.FC = () => {
             keyboardType="numeric"
             value={selectedPassengers.toString()}
             onChangeText={handlePassengerInputChange}
-            returnKeyType="done" // Set returnKeyType to "done" for the "Done" button
+            returnKeyType="done"
           />
         </View>
         <Pressable style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Submit</Text>
         </Pressable>
         <Pressable style={styles.buttonCancel} onPress={handleCancel}>
-          <Text style={styles.buttonText} >Cancel</Text>
+          <Text style={styles.buttonText}>Cancel</Text>
         </Pressable>
       </ImageBackground>
     </View>
@@ -142,8 +128,8 @@ const RequestReservation: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center', // Center vertically
-    alignItems: 'center', // Center horizontally
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     fontSize: 30,
@@ -181,19 +167,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     fontWeight: 'bold',
-  },
-  confirmButton: {
-    alignSelf: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 6,
-    borderColor: 'grey',
-    borderWidth: 2,
-  },
-  confirmedText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
 });
 

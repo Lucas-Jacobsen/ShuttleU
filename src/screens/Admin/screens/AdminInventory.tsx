@@ -12,7 +12,7 @@ import {
   FlatList,
 } from "react-native";
 import { Row, Rows, Table } from "react-native-table-component";
-import { loadedShuttleData, loadedTripData } from "../../../dataLoader";
+import { loadedShuttleData, loadedTripData } from "../../../datasource/dataLoader";
 
 const { width, height } = Dimensions.get("window");
 

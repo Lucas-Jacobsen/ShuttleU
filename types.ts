@@ -10,4 +10,5 @@ export type RootStackParamList = {
     ViewShuttleLogs: undefined;
     AdminLogs:undefined;
     CurrentTrip: undefined;
+    ArrivalStatus: undefined;
 }

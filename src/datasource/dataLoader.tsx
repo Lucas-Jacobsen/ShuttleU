@@ -1,11 +1,10 @@
-import data from './data.json'
-import { Bldg } from './models/bldg';
-import { Shuttle } from './models/Shuttle';
-import ShuttleTripData from './models/ShuttleTripData';
-import { Trip } from './models/Trip';
+import data from "./data.json";
+import { Bldg } from "../models/bldg";
+import { Shuttle } from "../models/Shuttle";
+import ShuttleTripData from "../models/ShuttleTripData";
+import { Trip } from "../models/Trip";
 
 // Read data from data.json
-
 
 // Extract data from JSON
 const { sampleList, sampleData, sampleTrips, sampleBuildings } = data;
@@ -22,16 +21,18 @@ export const loadedShuttleData: Shuttle[] = sampleList.map((item: any) => {
   );
 });
 
-export const loadedShuttleTripData: ShuttleTripData[] = sampleData.map((item: any) => {
-  return {
-    shuttleId: item.shuttleId,
-    lat: item.lat,
-    lon: item.lon,
-    dropoff: item.dropoff,
-    pax: item.pax,
-    dur: item.dur,
-  };
-});
+export const loadedShuttleTripData: ShuttleTripData[] = sampleData.map(
+  (item: any) => {
+    return {
+      shuttleId: item.shuttleId,
+      lat: item.lat,
+      lon: item.lon,
+      dropoff: item.dropoff,
+      pax: item.pax,
+      dur: item.dur,
+    };
+  }
+);
 
 export const loadedTripData: Trip[] = sampleTrips.map((item: any) => {
   return new Trip(

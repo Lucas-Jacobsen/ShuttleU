@@ -12,7 +12,7 @@ import {
   FlatList,
 } from "react-native";
 import { Row, Rows, Table } from "react-native-table-component";
-import { loadedTripData } from "../../../dataLoader";
+import { loadedTripData } from "../../../datasource/dataLoader";
 
 const { width, height } = Dimensions.get("window");
 
@@ -26,8 +26,8 @@ const ViewShuttleLogs = () => {
     <View style={styles.row}>
     <Text style={styles.headerCell}>id</Text>
    <Text style={styles.headerCell}>Shuttle</Text>
-  <Text style={styles.headerCell}>Pickup</Text>
-  <Text style={styles.headerCell}>Dropoff</Text>
+  <Text style={styles.headerCell}>Bldg-Pickup</Text>
+  <Text style={styles.headerCell}>Bldg-Dropoff</Text>
   <Text style={styles.headerCell}>Passengers</Text>
   <Text style={styles.headerCell}>Durration</Text>
 </View>

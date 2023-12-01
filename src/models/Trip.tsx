@@ -15,4 +15,5 @@ export class Trip {
       this.pax = pax;
       this.dur = dur;
     }
+  
   }

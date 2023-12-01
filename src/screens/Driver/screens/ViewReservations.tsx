@@ -42,25 +42,21 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function ViewReservationsPage() {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="ViewReservations" component={ViewReservations} />
-      <Stack.Screen name="CurrentTrip" component={CurrentTrip} />
-      <Stack.Screen name="DriverMain" component={DriverMain} />
-
-
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="ViewReservations" component={ViewReservations} />
+        <Stack.Screen name="CurrentTrip" component={CurrentTrip} />
+        <Stack.Screen name="DriverMain" component={DriverMain} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-type ViewReservationProps = {navigation: any};
+type ViewReservationProps = { navigation: any };
 
 const ViewReservations: React.FC<ViewReservationProps> = ({ navigation }) => {
   const handleCancel = () => {
     navigation.navigate("DriverMain");
-
   };
-
 
   return (
     <View style={styles.container}>
@@ -71,10 +67,10 @@ const ViewReservations: React.FC<ViewReservationProps> = ({ navigation }) => {
       >
         <View>
           <Text style={styles.header}>View Reservations</Text>
-          <ViewReservationsTable navigation={navigation}/>
+          <ViewReservationsTable navigation={navigation} />
           <Pressable style={styles.buttonCancel} onPress={handleCancel}>
-          <Text style={styles.buttonText}>Cancel</Text>
-        </Pressable>
+            <Text style={styles.buttonText}>Cancel</Text>
+          </Pressable>
         </View>
       </ImageBackground>
     </View>
@@ -85,16 +81,17 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 30,
     marginTop: 50,
-    textAlign:'center'
+    textAlign: "center",
   },
   container: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    width: width, 
-    height: height
-  }, buttonCancel: {
+    width: width,
+    height: height,
+  },
+  buttonCancel: {
     alignSelf: "center",
     paddingVertical: 12,
     paddingHorizontal: 24,

@@ -10,6 +10,7 @@ import { Header } from "react-native/Libraries/NewAppScreen";
 import { Shuttle } from '..//../models/Shuttle'; // Import the Shuttle class
 import ActiveShuttlesTable from "../Rider/ActiveShuttlesTable";
 import ActiveShuttlesMap from "./ActiveShuttlesMap";
+import ArrivalStatus from "./ArrivalStatus";
 
 
 
@@ -34,6 +35,8 @@ export default function RiderMainPage(){
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="RiderMain" component={RiderMain} />
         <Stack.Screen name="RequestReservation" component={RequestReservation}options={{title: 'Request a Ride'}} />
+        <Stack.Screen name ="ArrivalStatus" component={ArrivalStatus } />
+
       </Stack.Navigator>
     </NavigationContainer>
 
@@ -59,7 +62,7 @@ const RiderMain: React.FC<RiderMainProps> = (props) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   header: {
     fontSize: 30,
     marginTop: 50
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
-    fontWeight: '500'
+    fontWeight: '500' 
   },
   button: {
     alignItems: 'center',

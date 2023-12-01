@@ -14,7 +14,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../../types";
 import CurrentTripMap from "../components/CurrentTripMap";
 import UpdateTrip from "../components/UpdateTrip";
-import { loadedBldgData, loadedTripData } from "../../../dataLoader";
+import { loadedBldgData, loadedTripData } from "../../../datasource/dataLoader";
 import { Bldg } from "../../../models/bldg";
 
 const { width, height } = Dimensions.get("window");
@@ -30,31 +30,33 @@ const CurrentTrip: React.FC<CurrentTripProps> = ({ route, navigation }) => {
   const [seconds, setSeconds] = useState(0);
   const [currentTrip, setCurrentTrip] = useState(trip); // Define a state variable
   const [completed, setCompleted] = useState(false);
-  const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | null>(null);
+  const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | null>(
+    null
+  );
   const CurrentTrip = trip;
-  const [pickupBldgName, setPickupBldgName] = useState('');
-  const [dropoffBldgName, setDropoffBldgName] = useState('');
+  const [pickupBldgName, setPickupBldgName] = useState("");
+  const [dropoffBldgName, setDropoffBldgName] = useState("");
+  const [passengerPickedUp, setPassengerPickedUp] = useState(false);
 
 
-  function findBuildingByNumber(buildings: Bldg[], number: Number): Bldg | undefined {
+  function findBuildingByNumber(
+    buildings: Bldg[],
+    number: Number
+  ): Bldg | undefined {
     return buildings.find((building) => building.number === number);
   }
-
 
   useEffect(() => {
     const foundPickup = findBuildingByNumber(loadedBldgData, trip.pickup);
     const foundDropoff = findBuildingByNumber(loadedBldgData, trip.dropoff);
 
     if (foundPickup && foundDropoff) {
-     setPickupBldgName(foundPickup.name);
-     setDropoffBldgName(foundDropoff.name);
-    
-
+      setPickupBldgName(foundPickup.name);
+      setDropoffBldgName(foundDropoff.name);
     } else {
       console.log("Building not found");
-   
     }
-  }, );
+  });
   useEffect(() => {
     let timerInterval: NodeJS.Timeout;
 
@@ -101,40 +103,55 @@ const CurrentTrip: React.FC<CurrentTripProps> = ({ route, navigation }) => {
         resizeMode="cover"
         style={styles.bImage}
       >
-       <Text style={styles.header}>Trip Details</Text>
-      <View style={styles.tableContainer}>
-        <View style={styles.tableHeader}>
-          <View style={styles.headerTextContainer}>
-            <Text style={styles.headerText}>Duration</Text>
+        
+        <Text style={styles.header}>Trip Details</Text>
+        <View style={styles.tableContainer}>
+          <View style={styles.tableHeader}>
+            <View style={styles.headerTextContainer}>
+              <Text style={styles.headerText}>Duration</Text>
+            </View>
+            <View style={styles.headerTextContainer}>
+              <Text style={styles.headerText}>Pickup</Text>
+            </View>
+            <View style={styles.headerTextContainer}>
+              <Text style={styles.headerText}>Dropoff</Text>
+            </View>
           </View>
-          <View style={styles.headerTextContainer}>
-            <Text style={styles.headerText}>Pickup</Text>
+          <View style={styles.dataContainer}>
+            <View style={styles.dataTextContainer}>
+              <Text style={styles.dataText}>{seconds}s</Text>
+            </View>
+            <View style={styles.dataTextContainer}>
+              <Text style={styles.dataText}>{pickupBldgName}</Text>
+            </View>
+            <View style={styles.dataTextContainer}>
+              <Text style={styles.dataText}>{dropoffBldgName}</Text>
+            </View>
           </View>
-          <View style={styles.headerTextContainer}>
-            <Text style={styles.headerText}>Dropoff</Text>
           </View>
-        </View>
-        <View style={styles.dataContainer}>
-          <View style={styles.dataTextContainer}>
-            <Text style={styles.dataText}>{seconds}s</Text>
-          </View>
-          <View style={styles.dataTextContainer}>
-            <Text style={styles.dataText}>{pickupBldgName}</Text>
-          </View>
-          <View style={styles.dataTextContainer}>
-            <Text style={styles.dataText}>{dropoffBldgName}</Text>
-          </View>
-        </View>
-      </View>
-        <CurrentTripMap trip={trip} />
+          <CurrentTripMap trip={trip} />
+          {passengerPickedUp ? (
+      <View>
         <Pressable style={styles.button} onPress={handleCompleteTrip}>
+       
           <Text style={styles.confirmButtonText}>Complete Trip</Text>
         </Pressable>
         <UpdateTrip trip={trip} newTrip={handleUpdateTrip} />
         <Pressable style={styles.cancelButton} onPress={handleCompleteTrip}>
           <Text style={styles.confirmButtonText}>Cancel Trip</Text>
         </Pressable>
-
+      </View>
+    ) : (
+      <View>
+        {/* Content to display when passenger is not picked up */}
+        <Text style={styles.dataText}>Begin Trip when Passenger(s) is picked up. </Text>
+        <Pressable
+                    onPress={() => setPassengerPickedUp(true)}
+                    style={styles.pupButton}
+        ><Text>Picked Up</Text></Pressable>
+        {/* Add your content for when the passenger is not picked up */}
+      </View>
+    )}
       </ImageBackground>
     </View>
   );
@@ -165,11 +182,11 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     marginTop: 10, // Adjust as needed
-    alignContent: 'center',
-    width: '90%',
+    alignContent: "center",
+    width: "90%",
     borderWidth: 1,
     borderColor: "#000",
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   details: {
     textAlign: "center",
@@ -186,6 +203,17 @@ const styles = StyleSheet.create({
     alignItems: "center", // Center content horizontally
     justifyContent: "center", // Center content vertically
   },
+  pupButton: {
+    backgroundColor: "green", // Confirm button color
+    borderRadius: 5, // Confirm button border radius
+    paddingHorizontal: 15, // Adjust horizontal padding as needed
+    width: "90%",
+    height: 50,
+    alignSelf: "center",
+    alignItems: "center", // Center content horizontally
+    justifyContent: "center", // Center content vertically
+    marginBottom: 50
+  },
   cancelButton: {
     backgroundColor: "red", // Confirm button color
     borderRadius: 5, // Confirm button border radius
@@ -195,8 +223,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center", // Center content horizontally
     justifyContent: "center", // Center content vertically
-    marginBottom: 40
-    
+    marginBottom: 40,
   },
   confirmButtonText: {
     color: "white", // Confirm button text color
@@ -211,10 +238,10 @@ const styles = StyleSheet.create({
   // Add these styles for the table
   tableContainer: {
     marginTop: 10, // Adjust as needed
-    width: '90%',
+    width: "90%",
     borderWidth: 1,
     borderColor: "#000",
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   tableHeader: {
     flexDirection: "row",
@@ -241,11 +268,10 @@ const styles = StyleSheet.create({
     alignItems: "center", // Center horizontally
     borderRightWidth: 1, // Add border to separate columns
     borderColor: "#000",
-  
   },
   dataText: {
     fontSize: 15,
-    textAlign:'center'
+    textAlign: "center",
   },
 });
 

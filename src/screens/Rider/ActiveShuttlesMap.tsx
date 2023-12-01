@@ -13,7 +13,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Shuttle } from "..//../models/Shuttle"; // Import the Shuttle class
 import * as Location from "expo-location";
 import ShuttleTripData from "../../models/ShuttleTripData";
-import { loadedShuttleData } from "../../dataLoader";
+import { loadedShuttleData } from "../../datasource/dataLoader";
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -27,7 +27,7 @@ const INITIAL_POSITION = {
 };
 
 const ActiveShuttlesMap = () => {
-  const [shuttleData, setShuttleData] = useState<Shuttle[]>([]);
+  const [shuttleData, setShuttleData] = useState<Shuttle[]>([]); 
   const [currentLocation, setCurrentLocation] = useState(Object);
   //Load Current Location
   const getLocation = async () => {
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: "50%",
     borderWidth: 2,
+    alignSelf: 'center'
   },
 });
 
