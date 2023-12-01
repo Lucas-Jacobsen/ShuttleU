@@ -34,7 +34,6 @@ ShuttleU is a streamlined shuttle service for the shuttle system at Grand Canyon
 
 ## Check it out
 ![image](https://user-images.githubusercontent.com/97192501/232983370-40887f07-d431-4222-a225-961eb54cb859.png)
-![image](https://user-images.githubusercontent.com/97192501/232983237-118322fc-0e78-4ab1-aa8d-45dfe2fa21d5.png)
 ![image](https://user-images.githubusercontent.com/97192501/232983338-fd36c461-d6b3-4b29-8556-916c3e48b944.png)
 
 [![Start Messaging](https://img.shields.io/badge/View%20Demo-FF5733?style=for-the-badge)](https://angrychat-frontend-d69df51a96e6.herokuapp.com/)
