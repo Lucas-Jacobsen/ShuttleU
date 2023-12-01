@@ -7,8 +7,10 @@ This project is created using React Native Expo, MySql database, and the Google 
 
 # ShuttleU  <img src="https://cdn-icons-png.flaticon.com/128/2554/2554966.png" alt="ShuttleU" width="32"> 
 
+ShuttleU is a streamlined shuttle service for the shuttle system at Grand Canyon University. ShuttleU offers a dual-interface solution, catering to both riders and drivers, with a focus on efficiency, convenience, and real-time connectivity. The Rider UI empowers users with an interactive map, live shuttle tracking, and the ability to request personalized rides, ensuring a seamless and user-friendly experience. On the other side, the Driver UI enables drivers to log trips, accept ride requests, and communicate important updates with ease.
+![image](https://github.com/Lucas-Jacobsen/ShuttleU/assets/97192501/fffee034-1610-44c6-b20f-2aef60ac27a1)
 
-AngryChat is a unique messaging web app that adds a humorous twist to your regular conversations by transforming messages into passive-aggressive "angry" chats. This project utilizes the OpenAI API for natural language processing, Clerk for user authentication, and a custom Node.js/Express REST API backend. The frontend is developed using React, and live updates are achieved through the integration of WebSockets.
+
 
 ## Features
 
@@ -20,6 +22,7 @@ AngryChat is a unique messaging web app that adds a humorous twist to your regul
 
 
 ## Check it out
+**Link to vid**
 ## Technologies Used
 
 - ![React Native](https://img.shields.io/badge/-React_Native-61DAFB?style=flat-square&logo=react&logoColor=white) Developed the interactive mobile application frontend.
