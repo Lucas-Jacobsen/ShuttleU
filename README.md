@@ -18,19 +18,16 @@ AngryChat is a unique messaging web app that adds a humorous twist to your regul
 - **Custom Node.js/Express Backend:** A tailored backend designed to handle data processing, storage, and interactions between the frontend and external services.
 - **Real-time Updates with WebSockets:** Enjoy live chat refreshes and updates for a dynamic and engaging user experience.
 
-## Technologies Used
-
-- ![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=white) Developed the interactive frontend user interface.
-- ![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=node.js&logoColor=white) An open-source, cross-platform JavaScript runtime for server-side development.
-- ![Express](https://img.shields.io/badge/-Express-000000?style=flat-square&logo=express&logoColor=white) Built the robust backend API for data processing.
-- ![SQL](https://img.shields.io/badge/-SQL-4479A1?style=flat-square&logo=postgresql&logoColor=white) Managed the database for storing data.
-- ![OpenAI](https://img.shields.io/badge/-OpenAI-008080?style=flat-square&logo=openai&logoColor=white) Utilized for generating creative passive-aggressive responses.
-- ![Clerk](https://img.shields.io/badge/-ClerkJs-34CC88?style=flat-square&logo=clerk&logoColor=white) A user authentication and identity management solution for modern web applications.
-- ![WebSocket](https://img.shields.io/badge/-WebSocket.io-010002?style=flat-square&logo=websocket&logoColor=white) Enable real-time communication between clients and servers for live updates.
-- ![Heroku](https://img.shields.io/badge/-Heroku-430098?style=flat-square&logo=heroku&logoColor=white) Cloud platform used for hosting both the API backend and the frontend. 
 
 ## Check it out
+## Technologies Used
 
+- ![React Native](https://img.shields.io/badge/-React_Native-61DAFB?style=flat-square&logo=react&logoColor=white) Developed the interactive mobile application frontend.
+- ![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=node.js&logoColor=white) An open-source, cross-platform JavaScript runtime for server-side development.
+- ![Express](https://img.shields.io/badge/-Express-000000?style=flat-square&logo=express&logoColor=white) Built the robust backend API using Express for data processing.
+- ![MySQL Workbench](https://img.shields.io/badge/-MySQL_Workbench-4479A1?style=flat-square&logo=mysql&logoColor=white) Managed the relational database using MySQL Workbench for storing and retrieving data.
+- ![Google Maps API](https://img.shields.io/badge/-Google_Maps_API-4285F4?style=flat-square&logo=google-maps&logoColor=white) Integrated Google Maps API for location-based services and mapping.
+- ![Google Distance Matrix API](https://img.shields.io/badge/-Google_API-4285F4?style=flat-square&logo=google&logoColor=white) Utilized Google Distance Matrix API for distance calculations within the application.
 
 [![Start Messaging](https://img.shields.io/badge/Try%20Angrychat%20Now-FF5733?style=for-the-badge)](https://angrychat-frontend-d69df51a96e6.herokuapp.com/)
 
